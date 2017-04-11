@@ -13,6 +13,7 @@ CREATE TABLE curso (
 	nombre      VARCHAR(100)  NOT NULL ,
 	dificultad  VARCHAR(20)  NOT NULL,
 	explicacion	VARCHAR(1000) NOT NULL,
+	descripcion VARCHAR(100) NOT NULL,
 	PRIMARY KEY (nombre)
 ) ENGINE = InnoDB;
 
