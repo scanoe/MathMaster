@@ -31,6 +31,7 @@ class Estudiante extends CI_Controller {
 	}
 
     public function login(){
+        $this->load->driver('session');
         $username = $this->input->post('Lusername');
         $pass = $this->input->post('Lpassword');
         $this->load->model('Estudiante_model');
@@ -43,8 +44,13 @@ class Estudiante extends CI_Controller {
                 'logueado' => TRUE
             );
             $this->session->set_userdata($usuario_data);
-            echo 'Entró';
+            $data['title'] = 'Hola '.$username;
+            $data['nombre'] = $this->session->userdata('username');
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/nav', $data);
+            $this->load->view('templates/footer');
         }else{
+            echo 'asdasd';
         }
     }
 }
