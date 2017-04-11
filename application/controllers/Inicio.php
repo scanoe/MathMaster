@@ -33,17 +33,17 @@ class Inicio extends CI_Controller {
 				$errores["fecha_nacimiento"] = null;
 			$data['errores'] = $errores;
 		}
-		$this->load->view('header', $data);
+		$this->load->view('templates/header', $data);
 		$this->load->view('inicio', $data);
-		$this->load->view('footer');
+		$this->load->view('templates/footer');
 	}
 
 	public function cargar_login($back = null, $errores = null){
 		$data['title'] = 'MathMaster';
 		$data['back'] = $back;
 		$data['error'] = $errores;
-		$this->load->view('header', $data);
+		$this->load->view('templates/header', $data);
 		$this->load->view('inicio', $data);
-		$this->load->view('footer');
+		$this->load->view('templates/footer');
 	}
 }
