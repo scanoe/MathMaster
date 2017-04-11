@@ -17,7 +17,7 @@ CREATE TABLE curso (
 ) ENGINE = InnoDB;
 
 CREATE TABLE pregunta (
-	id   INT(200)   NOT NULL AUTO_INCREMENT,
+	id   					INT(200) NOT NULL AUTO_INCREMENT,
 	enunciado           	VARCHAR(10000) NOT NULL,
 	tipo_de_respuesta      	VARCHAR(1) NOT NULL,
 	respuesta            	VARCHAR(100) NOT NULL,
