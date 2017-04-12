@@ -1,4 +1,5 @@
 CREATE TABLE estudiante (
+
 	nombre_usuario  	VARCHAR(15)   NOT NULL,
 	nombre           	VARCHAR(30)  NOT NULL,
 	fecha_nacimiento	DATE  NOT NULL,
@@ -6,6 +7,7 @@ CREATE TABLE estudiante (
 	genero           	VARCHAR(1)   NOT NULL,
 	monedas             INTEGER UNSIGNED DEFAULT 0  NOT NULL,
 	puntos             	INTEGER UNSIGNED DEFAULT 0  NOT NULL,
+  Email               VARCHAR(40),
 	PRIMARY KEY (nombre_usuario)
 ) ENGINE = InnoDB;
 
