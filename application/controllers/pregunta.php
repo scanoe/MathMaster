@@ -31,8 +31,7 @@ class pregunta extends CI_Controller {
             if ($data["pregunta"]->tipo_de_respuesta=="a") {
                 $this->load->view("pregunta",$data);
         }else{
-
-
+            $this->load->view("preguntaC",$data);
         }
 
 
@@ -49,7 +48,9 @@ class pregunta extends CI_Controller {
             $data["contador"]=$contador;
             if ($data["pregunta"]->tipo_de_respuesta=="a") {
                 $this->load->view("pregunta",$data);
-            }else{}
+            }else{
+                $this->load->view("preguntaC",$data);
+            }
 
         }
 
