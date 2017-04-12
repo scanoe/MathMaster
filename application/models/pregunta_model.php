@@ -46,8 +46,8 @@ class pregunta_model extends CI_Model {
 		}
 	}
 
-	public function ObternerPreguntaRand(){
-		$query=$this->db->query("SELECT * FROM pregunta ORDER BY rand() LIMIT 1");
+	public function ObternerPreguntaRand($curso){
+		$query=$this->db->query("SELECT * FROM pregunta WHERE curso=".'"'.$curso.'"'." ORDER BY rand() LIMIT 1 ");
 		$result=$query->result();
 		foreach ($query->result() as $key=>$pregunta_model) {
 		$result[$key] = new pregunta_model($pregunta_model);

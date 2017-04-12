@@ -9,11 +9,13 @@ class pregunta extends CI_Controller {
         echo "hola esto es una prueba";
         $this->load->helper('form');
         $this->load->model("pregunta_model");
-        $data["pregunta"]= $this->pregunta_model->ObternerPreguntaRand();
+        $data["pregunta"]= $this->pregunta_model->ObternerPreguntaRand("curso de prueba");
         $data["contador"]=0;
         if ($data["pregunta"]->tipo_de_respuesta=="a") {
             $this->load->view("pregunta",$data);
-        }else{}
+        }else{
+            $this->load->view("preguntaC",$data);
+        }
 
     }
     public function responder_pregunta($id,$contador){
@@ -24,11 +26,14 @@ class pregunta extends CI_Controller {
         if ($pregunta->respuesta==$respuesta) {
             $contador=$contador+1;
             if ($contador<10) {
-            $data["pregunta"]= $this->pregunta_model->ObternerPreguntaRand();
+            $data["pregunta"]= $this->pregunta_model->ObternerPreguntaRand("curso de prueba");
             $data["contador"]=$contador;
             if ($data["pregunta"]->tipo_de_respuesta=="a") {
                 $this->load->view("pregunta",$data);
-        }else{}
+        }else{
+
+
+        }
 
 
             }else{
