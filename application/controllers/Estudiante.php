@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once('Inicio.php');
+require_once('Curso.php');
 
 class Estudiante extends CI_Controller {
 
@@ -31,7 +32,7 @@ class Estudiante extends CI_Controller {
 	}
 
     public function login(){
-        $this->load->driver('session');
+        $this->load->library('session');
         $username = $this->input->post('Lusername');
         $pass = $this->input->post('Lpassword');
         $this->load->model('Estudiante_model');
@@ -44,11 +45,7 @@ class Estudiante extends CI_Controller {
                 'logueado' => TRUE
             );
             $this->session->set_userdata($usuario_data);
-            $data['title'] = 'Hola '.$username;
-            $data['nombre'] = $this->session->userdata('username');
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/nav', $data);
-            $this->load->view('templates/footer');
+            redirect('Curso/cargar_lista_cursos');
         }else{
             echo 'asdasd';
         }

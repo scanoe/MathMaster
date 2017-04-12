@@ -8,19 +8,5 @@
             </ul>
         </div>
     </nav>
-    <div class="container mt-40">
-        <h1 class="fs2">Cursos</h1>
-        <section class="contenedor-cursos">
-            <div class="row">
-                <div class="col l4">
-                    <h2>Curso 1</div>
-                    
-                </div>
-                <div class="col l4">
-                </div>
-                <div class="col l4">
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </header>
