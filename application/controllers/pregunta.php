@@ -21,9 +21,11 @@ class pregunta extends CI_Controller {
     public function responder_pregunta($id,$contador){
         $this->load->helper('form');
         $this->load->model("pregunta_model");
+        ## cargar aca al modelo estudiante para incrementar las monedas
         $pregunta= $this->pregunta_model->ObtenerPreguntaId($id);
         $respuesta=$this->input->post('respuesta');
         if ($pregunta->respuesta==$respuesta) {
+            ## en este punto se puede llamar la funcion que permita subir las monedas del usaurio por responder correctamente.
             $contador=$contador+1;
             if ($contador<10) {
             $data["pregunta"]= $this->pregunta_model->ObternerPreguntaRand("curso de prueba");
