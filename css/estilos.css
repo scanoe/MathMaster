@@ -1,0 +1,146 @@
+footer{
+    background-color: #2196f3;
+    padding: 40px 16px 32px;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 8%;
+    background-color: #2196f3;
+}
+#ingresar{
+    padding: 0 16px;
+}
+.banner{
+    position: relative;
+    top: 80px;
+    left: -80px;
+}
+.block{
+    display: block;
+}
+.brightness{
+    -webkit-filter: brightness(50%);
+    -moz-filter: brightness(50%);
+    -o-filter: brightness(50%);
+    -ms-filter: brightness(50%);
+    filter: brightness(50%);
+}
+.center{
+    margin: 0 auto;
+}
+.contenedor{
+    position: relative;
+    top: 90px;
+}
+.course-container{
+    justify-content: center;
+}
+.error{
+    display: block;
+    position: relative;
+    top: -20px;
+    font-size: 0.8em;
+    color: #f44336;
+}
+.flex{
+    display:flex;
+}
+.fs0-8{
+    font-size: 0.8em;
+}
+.fs2{
+    font-size: 2em;
+}
+.fs1-3{
+    font-size: 1.3em;
+}
+.fs1-5{
+    font-size: 1.5em;
+}
+.hidden{
+    display: none;
+}
+.input-field input[type=text]:focus,  .input-field input[type=password]:focus{
+    border-bottom: 1px solid #2196f3;
+    box-shadow: 0 1px 0 0 #2196f3;
+}
+.logo{
+    font-family: 'Shrikhand', cursive;
+    font-size: 1.7em;
+}
+.login{
+    width: 20%;
+    position: absolute;
+    top: 50px;
+    background-color: white;
+    left: 75%;
+    z-index:100;
+    padding: 0 24px 16px;
+}
+.mb-20{
+    margin-bottom: 20px;
+}
+.mb-40{
+    margin-bottom: 40px;
+}
+.mt-40{
+    margin-top: 40px;
+}
+.paragrafo{
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.4em;
+}
+.picker__date-display, .picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected{
+    background-color: #2196F3;
+}
+.picker__weekday-display{
+    background-color: #2962ff;
+    font-weight: 400;
+}
+.picker__close, .picker__today, .picker__day.picker__day--today{
+    color: #2196f3;
+}
+.p0-32{
+    padding: 0 32px;
+}
+.prev-img{
+    width: 64px;
+    height: 64px;
+    margin-right: 16px;
+}
+.pr-32{
+    padding-right: 32px;
+}
+.pt-24{
+    padding-top: 24px;
+}
+.pt-32{
+    padding-top: 32px;
+}
+.submit{
+    width: 50%;
+    border-radius: 8px;
+    padding: 8px 0;
+    border-style: none;
+    background-color: #2196F3;
+}
+.submit:hover, #ingresar:hover{
+    background-color: #42a5f5;
+}
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:after {
+    background-color: #2196f3;
+}
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:before, [type="radio"].with-gap:checked+label:after {
+    border: 2px solid #2196f3;
+}
+input[type="submit"]{
+    width: 100%;
+    height: 100%;
+}
+.boton-realizar{
+    width: auto;
+    padding: 8px;
+}
