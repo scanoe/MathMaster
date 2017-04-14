@@ -19,12 +19,25 @@ nav{
 .block{
     display: block;
 }
+.br10{
+    border-radius: 10px;
+}
 .brightness{
     -webkit-filter: brightness(50%);
     -moz-filter: brightness(50%);
     -o-filter: brightness(50%);
     -ms-filter: brightness(50%);
     filter: brightness(50%);
+}
+.cambiar-pregunta-texto{
+    width: 16%;
+    position: absolute;
+    left: 60%;
+    top: 167px;
+    background-color: #2196f3;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
 }
 .center{
     margin: 0 auto;
@@ -46,8 +59,14 @@ nav{
 .flex{
     display:flex;
 }
+.fs0-5{
+    font-size: 0.5em;
+}
 .fs0-8{
     font-size: 0.8em;
+}
+.fs1-1{
+    font-size: 1.1em;
 }
 .fs2{
     font-size: 2em;
@@ -89,21 +108,45 @@ nav{
 .mb-40{
     margin-bottom: 40px;
 }
-
+.mensaje-error{
+    color: #f44336;
+    margin-top: 20px;
+}
 .monedas{
     padding-right: 0.5em;
     position: relative;
     top: 3px;
 }
-
+.mt-20{
+    margin-top:20px;
+}
 .mt-40{
     margin-top: 40px;
+}
+.opciones-pregunta{
+    display: flex;
+    flex-direction: column;
+}
+.opcion-pregunta-wrapper{
+    width: 30%;
+    height: 40px;
+    border-radius: 50%;
+    margin-bottom: 5px;
 }
 .paragrafo{
     width: 50%;
     margin: 0 auto;
     text-align: center;
     font-size: 1.4em;
+}
+.posicion-iconos-opciones-respuesta{
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+.posicion-mensaje{
+    position: relative;
+    left: -6%;
 }
 .picker__date-display, .picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected{
     background-color: #2196F3;
@@ -125,6 +168,19 @@ nav{
     width: 64px;
     height: 64px;
     margin-right: 16px;
+}
+.progress{
+    height: 23px;
+    margin: 0;
+    border-radius: 10px;
+    background-color: #03a9f4;
+}
+.progress_bar{
+    height: 25px;
+    border: 1px solid #bdbdbd;
+    border-radius: 10px;
+    width: 83%;
+    margin-bottom: 30px;
 }
 .pr-32{
     padding-right: 32px;
@@ -170,4 +226,47 @@ input[type="submit"]{
 .boton-realizar{
     width: auto;
     padding: 8px;
+}
+.ver-respuesta-texto{
+    width: 16%;
+    background-color: #2196f3;
+    text-align: center;
+    border-radius: 8px;
+    color: white;
+    position: absolute;
+    left: 60%;
+    top: 212px;
+}
+.w0{
+    width: 0;
+}
+.w10{
+    width: 10%;
+}
+.w20{
+    width: 20%;
+}
+.w30{
+    width: 30%;
+}
+.w40{
+    width: 40%;
+}
+.w50{
+    width: 50%;
+}
+.w60{
+    width: 60%;
+}
+.w70{
+    width: 70%;
+}
+.w80{
+    width: 80%;
+}
+.w90{
+    width: 90%;
+}
+.w100{
+    width: 190%;
 }

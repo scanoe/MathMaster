@@ -1,37 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>responder preguntas</title>
-</head>
-<body>
-<div id="container">
-	<header id="header">
-		<h1 Style="font-family: Arial">Pregunta</h1>
-	</header>
-
-	<dic id="body">
-
-		<h2>Enunciado</h2>
-		<p><?php echo $pregunta->enunciado ?></p>
-
-		<?= form_open('pregunta/responder_pregunta/'.$pregunta->id."/".$contador); ?>
-		<div>
-			<br><?= form_label("","respuesta"); ?></br>
-			<?= form_input('respuesta','',['id'=> 'respuesta']); ?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<div class="container">
+	<div class="mt-40">
+		<div class="progress_bar">
+			<div class="progress w<?= $progress ?>"></div>
 		</div>
-		<?= form_submit('','responder');?>
-		<?= form_close(); ?>
-
-
-
-
-
-
+		<div class="row">
+			<div class="col l10">
+				<p class="fs1-5"><?= $pregunta->enunciado ?></p>
+				<?= form_open('pregunta/responder_pregunta/'.$pregunta->id."/".$contador); ?>
+				<div>
+					<?= form_label("","respuesta"); ?>
+					<?= form_input('grupo-preguntas','',['id'=> 'respuesta']); ?>
+				</div>
+				<div class="center-align">
+					<input class="white-text submit waves-effect waves-light" type="submit" value="Responder">
+				</div>
+				<?= form_close(); ?>
+			</div>
+			<div class="col l2 opciones-pregunta">
+				<a class="fs1-5 opcion-pregunta-wrapper waves-effect waves-light blue cambiar-pregunta" href=""><i class="material-icons fs1-5 white-text posicion-iconos-opciones-respuesta">swap_horiz</i>Cambiar la pregunta</a>
+				<a class="fs1-5 opcion-pregunta-wrapper waves-effect waves-light blue ver-respuesta" href=""><i class="material-icons fs1-5 white-text posicion-iconos-opciones-respuesta">remove_red_eye</i></a>
+			</div>
+		</div>
 	</div>
-	<footer id ="footer">
-		<p>Developed by: MathMasters developing team</p>
-	</footer>
 </div>
-</body>
-</html>
+<p class="cambiar-pregunta-texto hidden">Cambiar pregunta XXX<i class="material-icons monedas fs1-1">monetization_on</i></p>
+<p class="ver-respuesta-texto hidden">Ver la respuesta XXX<i class="material-icons monedas fs1-1">monetization_on</i></p>
