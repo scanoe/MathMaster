@@ -115,6 +115,7 @@ class Estudiante extends CI_Model {
 		return $this->db->insert('estudiante', $data);
 	}
 
+
 	public function obtener_todas() {
 		$query = $this->db->get('estudiante');
 
@@ -125,5 +126,7 @@ class Estudiante extends CI_Model {
 		}
 
 		return $result;
+
 	}	
 }
+

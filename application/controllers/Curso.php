@@ -8,6 +8,7 @@
         }
 
         public function cargar_lista_cursos(){
+
             if(!empty($this->session->userdata('username'))){
                 $this->load->model('Curso_model');
                 $this->load->model('Estudiante_model');
@@ -45,6 +46,7 @@
             }else{
                 echo '404 ¿Qué intentas hacer?';
             }
+
         }
     }
 ?>

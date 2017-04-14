@@ -78,20 +78,24 @@ nav{
     z-index:100;
     padding: 0 24px 16px;
 }
+
 .m20-0{
     margin: 20px 0;
 }
+
 .mb-20{
     margin-bottom: 20px;
 }
 .mb-40{
     margin-bottom: 40px;
 }
+
 .monedas{
     padding-right: 0.5em;
     position: relative;
     top: 3px;
 }
+
 .mt-40{
     margin-top: 40px;
 }

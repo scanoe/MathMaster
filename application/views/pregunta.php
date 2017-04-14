@@ -9,7 +9,9 @@
 	<header id="header">
 		<h1 Style="font-family: Arial">Pregunta</h1>
 	</header>
-	<div id="body">
+
+	<dic id="body">
+
 		<h2>Enunciado</h2>
 		<p><?php echo $pregunta->enunciado ?></p>
 

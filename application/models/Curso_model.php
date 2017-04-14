@@ -12,7 +12,9 @@
             if($value != null)
                 settype($value, 'object');
             if(is_object($value)){
+
                 $this->nombre = isset($value->nombre) ? $value->nombre : null;
+
                 $this->dificultad = isset($value->dificultad) ? $value->dificultad : null;
                 $this->explicacion = isset($value->explicacion) ? $value->explicacion : null;
                 $this->descripcion = isset($value->descripcion) ? $value->descripcion : null;
@@ -36,10 +38,12 @@
             return $query->result();
         }
 
+
         public function obtener_explicacion(){
             $sql = 'SELECT `explicacion` FROM `curso` WHERE `nombre` = ?';
             $query = $this->db->query($sql, array($this->nombre));
             return $query->result();
         }
+
     }
 ?>
