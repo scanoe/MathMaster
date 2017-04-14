@@ -40,6 +40,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
         }
 
+        public function obtener(){
+            $sql = 'SELECT * FROM `estudiante` WHERE `nombre_usuario` = ?';
+            $query = $this->db->query($sql, array($this->username));
+            return $query->result();
+        }
+
         public function validar(){
             $errores = [];
             $sql = 'SELECT * FROM `estudiante` WHERE `nombre_usuario` = ?';
@@ -86,6 +92,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $sql = 'SELECT `monedas` FROM `estudiante` WHERE `nombre_usuario` = ?';
             $query = $this->db->query($sql, array($this->username));
             return $query->result();
+        }
+
+        public function actualizar_monedas($monedas){
+            $this->db->set('monedas', $monedas, FALSE);
+            $this->db->where('nombre_usuario', $this->username);
+            $this->db->update('Estudiante');
         }
     }
 ?>
