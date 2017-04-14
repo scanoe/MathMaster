@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= $title ?></title>
     <link rel="stylesheet" href="<?= base_url('materialize/css/materialize.min.css') ?>">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('css/csslab-reseter_v2.css') ?>">
-    <link href="<?= base_url('https://fonts.googleapis.com/css?family=Shrikhand') ?>" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
     <link href="<?= base_url('css/estilos.css') ?>" rel="stylesheet">
 </head>

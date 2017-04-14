@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     class Estudiante_model extends CI_Model{
         private $username;
         private $nombres;
-        private $apellidos;
         private $pass;
         private $fecha_nacimiento;
         private $sexo;
@@ -18,7 +17,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             if(is_object($value)){
                 $this->username = isset($value->username) ? $value->username : null;
                 $this->nombres = isset($value->nombres) ? $value->nombres : null;
-                $this->apellidos = isset($value->apellidos) ? $value->apellidos : null;
                 $this->pass = isset($value->pass) ? $value->pass : null;
                 $this->fecha_nacimiento = isset($value->fecha_nacimiento) ? $value->fecha_nacimiento : null;
                 $this->sexo = isset($value->sexo) ? $value->sexo : null;
@@ -31,7 +29,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             switch($key){
                 case 'username' :
                 case 'nombres' :
-                case 'apellidos' :
                 case 'pass' :
                 case 'fecha_nacimiento' :
                 case 'sexo' :
@@ -53,8 +50,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $errores["user"] = 'Escribe un nombre de usuario';
             if($this->nombres == null)
                 $errores["nombre"] = 'Escribe un nombre';
-            if($this->apellidos == null)
-                $errores["apellido"] = 'Escribe tus apellidos por favor';
             if($this->pass == null)
                 $errores["pass"] = 'Escribe una contraseña';
             if($this->fecha_nacimiento == null)
@@ -75,10 +70,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $data = array(
                 'nombre_usuario'=>$this->username, 
                 'nombre'=>$this->nombres, 
-                'apellido'=>$this->apellidos, 
-                'pass'=>$this->pass, 
+                'contraseña'=>$this->pass, 
                 'fecha_nacimiento'=>$this->fecha_nacimiento, 
-                'sexo'=>$this->sexo,
+                'genero'=>$this->sexo,
                 'monedas'=>0,
                 'puntos'=>0
             );
@@ -86,6 +80,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 return TRUE;
             else
                 return FALSE;
+        }
+
+        public function get_monedas(){
+            $sql = 'SELECT `monedas` FROM `estudiante` WHERE `nombre_usuario` = ?';
+            $query = $this->db->query($sql, array($this->username));
+            return $query->result();
         }
     }
 ?>

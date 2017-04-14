@@ -1,26 +1,18 @@
 <header>
     <nav>
-        <a class="valign-wrapper" href=""><h1 class="valign logo">MathMaster</h1></a>
+        <a class="valign-wrapper" href="<?= base_url() ?>/index.php/Curso/cargar_lista_cursos"><h1 class="valign logo">MathMaster</h1></a>
         <div>
             <ul>
                 <li><a href="" id="tabla_puntuaciones">Tabla de puntuaciones</a></li>
-                <li><a href="" id="tabla_puntuaciones"><?= $nombre ?></a></li>
+                <li class="flex p0-1em"><i class="material-icons monedas">monetization_on</i><p><?= $monedas[0]->monedas ?></p></li>
+                <li><a href="" id="settings"><?= $nombre ?></a></li>
             </ul>
         </div>
     </nav>
-    <div class="container mt-40">
-        <h1 class="fs2">Cursos</h1>
-        <section class="contenedor-cursos">
-            <div class="row">
-                <div class="col l4">
-                    <h2>Curso 1</div>
-                    
-                </div>
-                <div class="col l4">
-                </div>
-                <div class="col l4">
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="collection settings hidden" id="settings-container">
+        <ul>
+            <li><a href="" class="collection-item blue-text right-align">Ver tu perfil</a></li>
+            <li><a href="<?= base_url() ?>/index.php/Estudiante/cerrar_sesion" class="collection-item blue-text right-align">Cerrar Sesión</a></li>
+        </ul>
+    </div>  
 </header>

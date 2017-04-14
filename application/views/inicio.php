@@ -46,11 +46,6 @@
                                     </div>
                                     <label class="error"><?= $errores['nombre'] ?></label>
                                     <div class="input-field">
-                                        <label for = "apellidos">Apellidos *</label>
-                                        <input type="text" id="apellidos" name="apellidos" value="<?= $back['apellidos'] ?>">
-                                    </div>
-                                    <label class="error"><?= $errores['apellido'] ?></label>
-                                    <div class="input-field">
                                         <label for = "password">Contraseña *</label>
                                         <input type="password" id="password" name="password" value="<?= $back['pass'] ?>">
                                     </div>

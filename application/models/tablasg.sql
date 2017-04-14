@@ -1,4 +1,5 @@
 CREATE TABLE estudiante (
+
 	nombre_usuario  	VARCHAR(15)   NOT NULL,
 	nombre           	VARCHAR(30)  NOT NULL,
 	fecha_nacimiento	DATE  NOT NULL,
