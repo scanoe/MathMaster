@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
+
 class pregunta extends CI_Controller {
 
     public function preguntaA(){
@@ -10,6 +11,7 @@ class pregunta extends CI_Controller {
         $this->load->helper('form');
         $this->load->model("pregunta_model");
         $data["pregunta"]= $this->pregunta_model->ObternerPreguntaRand("curso de prueba");
+
         $data["contador"]=0;
         if ($data["pregunta"]->tipo_de_respuesta=="a") {
             $this->load->view("pregunta",$data);
@@ -18,6 +20,8 @@ class pregunta extends CI_Controller {
         }
 
     }
+
+
     public function responder_pregunta($id,$contador){
         $this->load->helper('form');
         $this->load->model("pregunta_model");
@@ -28,6 +32,7 @@ class pregunta extends CI_Controller {
             ## en este punto se puede llamar la funcion que permita subir las monedas del usaurio por responder correctamente.
             $contador=$contador+1;
             if ($contador<10) {
+
             $data["pregunta"]= $this->pregunta_model->ObternerPreguntaRand("curso de prueba");
             $data["contador"]=$contador;
             if ($data["pregunta"]->tipo_de_respuesta=="a") {
@@ -44,6 +49,7 @@ class pregunta extends CI_Controller {
                 <h2> usted ha aprovado el curso</h2>";
             }
 
+
         }else{
             echo"<p>respuesta incorecta porfavor trate de nuevo</p>";
             $data["pregunta"]= $pregunta;
@@ -55,12 +61,6 @@ class pregunta extends CI_Controller {
             }
 
         }
-
-
-
     }
-
-
-
 
 }

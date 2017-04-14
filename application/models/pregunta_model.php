@@ -54,9 +54,9 @@ class pregunta_model extends CI_Model {
 		}
 		return $result[0];
 
-
-
 	}
+	
+
 	public function ObtenerPreguntaId($id){
 		$query=$this->db->get_where('pregunta', ['id' => $id]);
 				$result=$query->result();
@@ -66,7 +66,5 @@ class pregunta_model extends CI_Model {
 		return $result[0];
 	}
 
-
-
-
 }
+
