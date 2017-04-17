@@ -1,5 +1,4 @@
 CREATE TABLE estudiante (
-
 	nombre_usuario  	VARCHAR(15)   NOT NULL,
 	nombre           	VARCHAR(30)  NOT NULL,
 	fecha_nacimiento	DATE  NOT NULL,
@@ -11,11 +10,12 @@ CREATE TABLE estudiante (
 ) ENGINE = InnoDB;
 
 CREATE TABLE curso (
+	id 			INT NOT NULL AUTO_INCREMENT,
 	nombre      VARCHAR(100)  NOT NULL ,
 	dificultad  VARCHAR(20)  NOT NULL,
 	explicacion	VARCHAR(1000) NOT NULL,
 	descripcion VARCHAR(100) NOT NULL,
-	PRIMARY KEY (nombre)
+	PRIMARY KEY (id)
 ) ENGINE = InnoDB;
 
 CREATE TABLE pregunta (
@@ -26,16 +26,16 @@ CREATE TABLE pregunta (
 	respuesta_incorrecta1	VARCHAR(100),
 	respuesta_incorrecta2   VARCHAR(100),
 	respuesta_incorrecta3   VARCHAR(100),
-	curso					VARCHAR(100),
+	curso					INT NOT NULL,
 	PRIMARY KEY (id),
-	CONSTRAINT curso_pregunta FOREIGN KEY (curso) REFERENCES curso (nombre)
+	CONSTRAINT curso_pregunta FOREIGN KEY (curso) REFERENCES curso (id)
 ) ENGINE = InnoDB;
 
 CREATE TABLE lista_cursos_aprobados (
 	nombre_usuario	VARCHAR(15) NOT NULL,
-	curso			VARCHAR(100) NOT NULL,
+	curso			INT NOT NULL,
 	PRIMARY KEY (nombre_usuario,curso),
-	CONSTRAINT curso_usuario FOREIGN KEY (curso) REFERENCES curso (nombre),
+	CONSTRAINT curso_usuario FOREIGN KEY (curso) REFERENCES curso (id),
 	CONSTRAINT estudiante_curso FOREIGN KEY (nombre_usuario) REFERENCES estudiante (nombre_usuario)
 ) ENGINE = InnoDB;
 
@@ -43,9 +43,9 @@ CREATE TABLE insiginia (
 	nombre		VARCHAR(100)  NOT NULL ,
 	imagen      VARCHAR(2000)  NOT NULL,
 	descripcion	VARCHAR(1000) NOT NULL,
-	curso 		VARCHAR(100) NOT NULL,
+	curso 		INT NOT NULL,
 	PRIMARY KEY (nombre),
-	CONSTRAINT insiginia_curso FOREIGN KEY (curso) REFERENCES curso (nombre)
+	CONSTRAINT insiginia_curso FOREIGN KEY (curso) REFERENCES curso (id)
 ) ENGINE = InnoDB;
 
 CREATE TABLE insiginiaXestudiante (
@@ -55,14 +55,3 @@ CREATE TABLE insiginiaXestudiante (
 	CONSTRAINT estudiante_insiginia FOREIGN KEY (nombre_usuario) REFERENCES estudiante (nombre_usuario),
 	PRIMARY KEY (nombre_insiginia,nombre_usuario)
 ) ENGINE = InnoDB;
-
-
-
-
-
-
-
-
-
-
-	

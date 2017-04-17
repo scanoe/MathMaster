@@ -94,6 +94,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             return $query->result();
         }
 
+        public function obtener_nombre(){
+            $sql = 'SELECT `nombre` FROM `estudiante` WHERE `nombre_usuario` = ?';
+            $query = $this->db->query($sql, array($this->username));
+            return $query->result();
+        }
+
         public function actualizar_monedas($monedas){
             $this->db->set('monedas', $monedas, FALSE);
             $this->db->where('nombre_usuario', $this->username);

@@ -26,7 +26,6 @@ class pregunta_model extends CI_Model {
 				$this->respuesta_incorrecta1 = isset($value->respuesta_incorrecta1) ? $value->respuesta_incorrecta1 : null;
 				$this->respuesta_incorrecta2 = isset($value->respuesta_incorrecta2) ? $value->respuesta_incorrecta2 : null;
 				$this->respuesta_incorrecta3 = isset($value->respuesta_incorrecta3) ? $value->respuesta_incorrecta3 : null;
-
 			}
 		}
 	}
@@ -46,17 +45,11 @@ class pregunta_model extends CI_Model {
 		}
 	}
 
-	public function ObternerPreguntaRand($curso){
-		$query=$this->db->query("SELECT * FROM pregunta WHERE curso=".'"'.$curso.'"'." ORDER BY rand() LIMIT 1 ");
-		$result=$query->result();
-		foreach ($query->result() as $key=>$pregunta_model) {
-		$result[$key] = new pregunta_model($pregunta_model);
-		}
-		return $result[0];
-
+	public function ObtenerPreguntaRand($curso){
+		$query=$this->db->query("SELECT * FROM `pregunta` WHERE `curso` = $curso ORDER BY rand() LIMIT 1");
+		return $query->result();
 	}
 	
-
 	public function ObtenerPreguntaId($id){
 		$query=$this->db->get_where('pregunta', ['id' => $id]);
 				$result=$query->result();
@@ -65,6 +58,4 @@ class pregunta_model extends CI_Model {
 		}
 		return $result[0];
 	}
-
 }
-
