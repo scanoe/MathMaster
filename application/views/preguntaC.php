@@ -44,5 +44,5 @@
 		</div>
 	</div>
 </div>
-<p class="cambiar-pregunta-texto hidden">Cambiar pregunta XXX<i class="material-icons monedas fs1-1">monetization_on</i></p>
-<p class="ver-respuesta-texto hidden">Ver la respuesta XXX<i class="material-icons monedas fs1-1">monetization_on</i></p>
+<p class="cambiar-pregunta-texto hidden">Cambiar pregunta 2<i class="material-icons monedas fs1-1">monetization_on</i></p>
+<p class="ver-respuesta-texto hidden">Ver la respuesta 10<i class="material-icons monedas fs1-1">monetization_on</i></p>
