@@ -85,4 +85,51 @@ class pregunta extends CI_Controller {
             $this->load->view('templates/footer');
         }
     }
+	
+	public function cambiar_pregunta($id,$contador){
+		$this->load->helper('form');
+        $this->load->model("pregunta_model");
+        $this->load->model("Estudiante_model"); 
+        $estudiante = new Estudiante_model(array('username'=>'daniel'));//Esto es temporal para este entregable, 
+                                                                                //al final el usuario se obtiene de la sessión
+                                                                                //de usuario que haya abierta
+		$monedas = $estudiante->get_monedas()[0]->monedas;
+		if($monedas >= 2){
+			$monedas -= 2;
+            $estudiante->actualizar_monedas($monedas);
+            $data["pregunta"]= $this->pregunta_model->ObternerPreguntaRand("curso de prueba");
+			$data['nombre'] = 'daniel'; //Esto también se debe cambiar por el usuario que esté en la session para el otro entregable    
+			$data['monedas'] = $monedas;
+			$data["contador"]=$contador;
+			$data['title'] = 'Test de curso de prueba';
+			$data['progress'] = $contador * 10;
+			$this->load->view('templates/header', $data);
+			$this->load->view("templates/nav",$data);
+			if ($data["pregunta"]->tipo_de_respuesta=="a") {
+				$this->load->view("pregunta",$data);
+			}else{
+				$this->load->view("preguntaC",$data);
+			}
+			$this->load->view('templates/footer');
+		}else{
+            $data["pregunta"]= $this->pregunta_model->ObtenerPreguntaId($id);
+			$data['nombre'] = 'daniel'; //Esto también se debe cambiar por el usuario que esté en la session para el otro entregable    
+			$data['monedas'] = $monedas;
+			$data["contador"]=$contador;
+			$data['title'] = 'Test de curso de prueba';
+			$data['progress'] = $contador * 10;
+			$this->load->view('templates/header', $data);
+			$this->load->view("templates/nav",$data);
+			if ($data["pregunta"]->tipo_de_respuesta=="a") {
+				$this->load->view("pregunta",$data);
+			}else{
+				$this->load->view("preguntaC",$data);
+			}
+			$msg['mensaje'] = "No tienes suficientes monedas, aprueba cursos para recolectar más";
+			$this->load->view("mensaje",$msg);
+			$this->load->view('templates/footer');
+		}
+		
+
+	}
 }
