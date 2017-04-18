@@ -24,10 +24,5 @@
 		</div>
 	</div>
 </div>
-<<<<<<< HEAD
-<p class="cambiar-pregunta-texto hidden">Cambiar pregunta XXX<i class="material-icons monedas fs1-1">monetization_on</i>2</p>
-<p class="ver-respuesta-texto hidden">Ver la respuesta XXX<i class="material-icons monedas fs1-1">monetization_on</i></p>
-=======
 <p class="cambiar-pregunta-texto hidden">Cambiar pregunta 2<i class="material-icons monedas fs1-1">monetization_on</i></p>
 <p class="ver-respuesta-texto hidden">Ver la respuesta 10<i class="material-icons monedas fs1-1">monetization_on</i></p>
->>>>>>> e5cdc412e28a8f25a93f8d895baf0a53d89d65e0
