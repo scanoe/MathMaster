@@ -9,12 +9,10 @@
             </ul>
         </div>
     </nav>
-
     <div class="collection settings hidden" id="settings-container">
         <ul>
             <li><a href="" class="collection-item blue-text right-align">Ver tu perfil</a></li>
             <li><a href="<?= base_url() ?>/index.php/Estudiante/cerrar_sesion" class="collection-item blue-text right-align">Cerrar Sesión</a></li>
         </ul>
     </div>  
-
 </header>
