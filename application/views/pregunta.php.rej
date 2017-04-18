@@ -1,0 +1,9 @@
+diff a/application/views/pregunta.php b/application/views/pregunta.php	(rejected hunks)
+@@ -24,5 +24,5 @@
+ 		</div>
+ 	</div>
+ </div>
+-<p class="cambiar-pregunta-texto hidden">Cambiar pregunta XXX<i class="material-icons monedas fs1-1">monetization_on</i></p>
++<p class="cambiar-pregunta-texto hidden">Cambiar pregunta XXX<i class="material-icons monedas fs1-1">monetization_on</i>2</p>
+ <p class="ver-respuesta-texto hidden">Ver la respuesta XXX<i class="material-icons monedas fs1-1">monetization_on</i></p>
+\ No newline at end of file
