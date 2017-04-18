@@ -25,6 +25,7 @@ class pregunta extends CI_Controller {
             }else{
                 $this->load->view("pregunta_op_multiple",$data);
             }
+            $this->load->view("templates/footer",$data);
         }else{
             echo '404: Mayday';
         }
@@ -83,7 +84,7 @@ class pregunta extends CI_Controller {
                 }else{
                     $this->load->view("pregunta_op_multiple",$data);
                 }
-                $data['mensaje'] = 'Respuesta incorecta porfavor intente de nuevo';
+                $data['mensaje'] = 'Respuesta incorrecta por favor intente de nuevo';
                 $this->load->view("mensaje",$data);
                 $this->load->view('templates/footer');
             }
@@ -137,4 +138,51 @@ class pregunta extends CI_Controller {
 			$this->load->view('templates/footer');
 		}
 	}
+
+    public function ver_respuesta($id,$contador){
+        $this->load->helper('form');
+        $this->load->model("pregunta_model");
+        $this->load->model("Estudiante_model");
+        $estudiante = new Estudiante_model(array('username'=>$this->session->userdata('username')));
+        $pregunta= $this->pregunta_model->ObtenerPreguntaId($id);
+        $respuesta=$this->input->post('grupo-preguntas');
+        $monedas = $estudiante->get_monedas()[0]->monedas;
+        if($monedas >= 10) {
+            $monedas=$monedas-10;
+            $estudiante->actualizar_monedas($monedas);
+            $data['nombre'] = $this->session->userdata('username');
+            $data['monedas'] = $monedas;
+            $data["pregunta"] = $pregunta;
+            $data["contador"] = $contador;
+            $data['title'] = 'Test de curso de prueba';
+            $data['progress'] = $contador * 10;
+            $this->load->view('templates/header', $data);
+            $this->load->view("templates/nav", $data);
+            if ($data["pregunta"]->tipo_de_respuesta == "a") {
+                $this->load->view("pregunta_abierta", $data);
+            } else {
+                $this->load->view("pregunta_op_multiple", $data);
+            }
+            $data['mensaje'] = 'Respuesta correcta: ' . $pregunta->respuesta;
+            $this->load->view("mensaje", $data);
+            $this->load->view('templates/footer');
+        }else{
+            $data["pregunta"]= $pregunta;
+            $data["contador"]=$contador;
+            $data['title'] = 'Test de curso de prueba';
+            $data['monedas'] = $estudiante->get_monedas()[0]->monedas;
+            $data['nombre'] = $this->session->userdata('username');
+            $data['progress'] = $contador * 10;
+            $this->load->view('templates/header', $data);
+            $this->load->view("templates/nav",$data);
+            if ($data["pregunta"]->tipo_de_respuesta=="a") {
+                $this->load->view("pregunta_abierta",$data);
+            }else{
+                $this->load->view("pregunta_op_multiple",$data);
+            }
+            $data['mensaje'] = 'Saldo insuficiente: No tienes suficientes monedas, aprueba cursos para recolectar más';
+            $this->load->view("mensaje",$data);
+            $this->load->view('templates/footer');
+        }
+    }
 }
