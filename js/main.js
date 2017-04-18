@@ -32,7 +32,7 @@ $('#settings').click(function(e){
     }
 });
 
-$('.container').click(function(){
+$('.container').click(function(e){
     if(act2){
         $('#settings-container').removeClass('block').addClass('hidden');
         act2 = false;

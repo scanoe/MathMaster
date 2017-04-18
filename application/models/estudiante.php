@@ -12,8 +12,6 @@ class Estudiante extends CI_Model {
 	private $puntos;
 	private $email;
 
-	
-
 	public function __construct($value = null) {
 		parent::__construct();
 		$this->load->database();
@@ -56,43 +54,33 @@ class Estudiante extends CI_Model {
 		if ($this->nombre_usuario == null) {
 			$errores[] = 'El nombre de usuario no puede ser vacío';
 		}
-
 		if ($this->contraseña == null) {
 			$errores[] = 'la contraseña no puede ser vacía';
 		}
-
 		if ($this->nombre == null) {
 			$errores[] = 'El nombre no puede ser vacío';
 		}
-
 		if ($this->genero == null) {
 			$errores[] = 'El genero no puede ser vacío';
 		} else if ($this->genero != 'M' && $this->genero != 'F') {
 			$errores[] = 'El genero debe ser M ó F';
 		}
-
 		if ($this->fecha_nacimiento == null) {
 			$errores[] = 'La fecha de nacimiento no puede ser vacía';
 		}
 		// Acá habría que validar también que sea una fecha correcta
 		// y que sea menor a la fecha actual.
-
 		if ($this->monedas == null) {
 			$errores[] = 'Las monedas no pueden ser vacías';
 		}
-
 		if ($this->puntos == null) {
 			$errores[] = 'Los puntos no pueden ser vacíos';
 		}
-
 		if ($this->email == null) {
 			$errores[] = 'El email no puede ser vacío';
 		} else if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
 			$errores[] = 'El email ingresado no es válido';
 		}
-
-		
-
 		if (empty($errores)) {
 			return TRUE;
 		} else {
@@ -111,22 +99,15 @@ class Estudiante extends CI_Model {
 			'puntos' => $this->puntos,
 			'email' => $this->email
 		];
-
 		return $this->db->insert('estudiante', $data);
 	}
 
-
 	public function obtener_todas() {
 		$query = $this->db->get('estudiante');
-
 		$result = [];
-
 		foreach ($query->result() as $key=>$estudiante) {
 			$result[$key] = new estudiante($estudiante);
 		}
-
 		return $result;
-
 	}	
 }
-

@@ -17,7 +17,6 @@ class pregunta_model extends CI_Model {
 		if ($value != null) {
 			if (is_array($value))
 				settype($value, 'object');
-
 			if (is_object($value)) {
 				$this->id = isset($value->id) ? $value->id : null;
 				$this->enunciado = isset($value->enunciado) ? $value->enunciado : null;
@@ -26,7 +25,6 @@ class pregunta_model extends CI_Model {
 				$this->respuesta_incorrecta1 = isset($value->respuesta_incorrecta1) ? $value->respuesta_incorrecta1 : null;
 				$this->respuesta_incorrecta2 = isset($value->respuesta_incorrecta2) ? $value->respuesta_incorrecta2 : null;
 				$this->respuesta_incorrecta3 = isset($value->respuesta_incorrecta3) ? $value->respuesta_incorrecta3 : null;
-
 			}
 		}
 	}
@@ -46,25 +44,18 @@ class pregunta_model extends CI_Model {
 		}
 	}
 
-	public function ObternerPreguntaRand($curso){
-		$query=$this->db->query("SELECT * FROM pregunta WHERE curso=".'"'.$curso.'"'." ORDER BY rand() LIMIT 1 ");
+	public function ObtenerPreguntaRand($curso){
+		$sql = "SELECT * FROM `pregunta` WHERE `curso` = ? ORDER BY rand() LIMIT 1";
+		$query = $this->db->query($sql, array($curso));
+		return $query->result();
+	}
+	
+	public function ObtenerPreguntaId($id){
+		$query=$this->db->get_where('pregunta', ['id' => $id]);
 		$result=$query->result();
 		foreach ($query->result() as $key=>$pregunta_model) {
 		$result[$key] = new pregunta_model($pregunta_model);
 		}
 		return $result[0];
-
 	}
-	
-
-	public function ObtenerPreguntaId($id){
-		$query=$this->db->get_where('pregunta', ['id' => $id]);
-				$result=$query->result();
-		foreach ($query->result() as $key=>$pregunta_model) {
-		$result[$key] = new pregunta_model($pregunta_model);
-		}
-		return $result[0];
-	}
-
 }
-

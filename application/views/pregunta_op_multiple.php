@@ -38,7 +38,7 @@
 				<?= form_close(); ?>
 			</div>
 			<div class="col l2 opciones-pregunta">
-				<a class="fs1-5 opcion-pregunta-wrapper waves-effect waves-light blue cambiar-pregunta" href=""><i class="material-icons fs1-5 white-text posicion-iconos-opciones-respuesta">swap_horiz</i></a>
+				<a class="fs1-5 opcion-pregunta-wrapper waves-effect waves-light blue cambiar-pregunta" href="<?= base_url() ?>index.php/pregunta/cambiar_pregunta/<?= $pregunta->id ?>/<?= $contador ?>"><i class="material-icons fs1-5 white-text posicion-iconos-opciones-respuesta">swap_horiz</i>Cambiar la pregunta</a>
 				<a class="fs1-5 opcion-pregunta-wrapper waves-effect waves-light blue ver-respuesta" href=""><i class="material-icons fs1-5 white-text posicion-iconos-opciones-respuesta">remove_red_eye</i></a>
 			</div>
 		</div>
