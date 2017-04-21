@@ -49,7 +49,8 @@ class Estudiante extends CI_Controller {
         if(empty($errores)){
             $usuario_data = array(
                 'username' => $username,
-                'progreso' => 0
+                'progreso' => 0,
+                'pregunta' => null
             );
             $this->session->set_userdata($usuario_data);
             redirect('Curso/cargar_lista_cursos');

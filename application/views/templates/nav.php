@@ -4,7 +4,7 @@
         <div>
             <ul>
                 <li><a href="" id="tabla_puntuaciones">Tabla de puntuaciones</a></li>
-                <li class="flex p0-1em"><i class="material-icons monedas">monetization_on</i><p><?= $monedas ?></p></li>
+                <li class="flex p0-1em"><img src="<?= base_url("img/ic_monetization_on_white_24px.svg") ?>" ><p><?= $monedas ?></p></li>
                 <li><a href="" id="settings"><?= $nombre ?></a></li>
             </ul>
         </div>
