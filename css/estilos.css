@@ -59,6 +59,10 @@ nav{
 .flex{
     display:flex;
 }
+.flex-center{
+    display: flex;
+    justify-content: center;
+}
 .fs0-5{
     font-size: 0.5em;
 }
@@ -97,7 +101,6 @@ nav{
     z-index:100;
     padding: 0 24px 16px;
 }
-
 .m20-0{
     margin: 20px 0;
 }
@@ -192,6 +195,9 @@ nav{
 }
 .pt-32{
     padding-top: 32px;
+}
+.pt-40{
+    padding-top: 40px;
 }
 .submit{
     width: 50%;
