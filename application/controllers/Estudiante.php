@@ -1,7 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-require_once('Inicio.php');
-require_once('Curso.php');
 
 class Estudiante extends CI_Controller {
 
@@ -26,15 +24,28 @@ class Estudiante extends CI_Controller {
                 $datos_login = array('username'=>$username, 'pass'=>$pass);
                 $estudiante = new Estudiante_model($datos_login);
                 $usuario_data = array(
-                'username' => $username,
-                'logueado' => TRUE
+                    'username' => $username,
+                    'progreso' => $contador,
+                    'pregunta' => NULL
                 );
                 $this->session->set_userdata($usuario_data);
                 redirect('Curso/cargar_lista_cursos');
             }
         }else{
-            $inicio = new Inicio();
-            $inicio->cargar_inicio($data_estudiante, $errores);
+            $data['title'] = 'MathMaster';
+            if(!array_key_exists('user', $errores))
+				$errores["user"] = null;
+			if(!array_key_exists('nombre', $errores))
+				$errores["nombre"] = null;
+			if(!array_key_exists('pass', $errores))
+				$errores["pass"] = null;
+			if(!array_key_exists('fecha_nacimiento', $errores))
+				$errores["fecha_nacimiento"] = null;
+			$data['errores'] = $errores;
+            $data['back'] = $data_estudiante;
+            $this->load->view('templates/header', $data);
+		    $this->load->view('inicio', $data);
+		    $this->load->view('templates/footer');
         }
 	}
 

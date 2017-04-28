@@ -7,29 +7,10 @@ class Inicio extends CI_Controller {
 		$this->cargar_inicio();
 	}
 
-	public function cargar_inicio($back = null, $errores = null){
+	public function cargar_inicio(){
 		$data['title'] = 'MathMaster';
-		if($back == null)
-			$data['back'] = array('username'=>null, 'nombres'=>null, 'pass'=>null, 'fecha_nacimiento'=>null, 'sexo'=>'');
-		else
-			$data['back'] = $back;
-		if($errores == null){
-			$errores["user"] = null;
-			$errores["nombre"] = null;
-			$errores["pass"] = '';
-            $errores["fecha_nacimiento"] = '';
-			$data['errores'] = $errores;
-		}else{
-			if(!array_key_exists('user', $errores))
-				$errores["user"] = null;
-			if(!array_key_exists('nombre', $errores))
-				$errores["nombre"] = null;
-			if(!array_key_exists('pass', $errores))
-				$errores["pass"] = null;
-			if(!array_key_exists('fecha_nacimiento', $errores))
-				$errores["fecha_nacimiento"] = null;
-			$data['errores'] = $errores;
-		}
+		$data['back'] = array('username'=>null, 'nombres'=>null, 'pass'=>null, 'fecha_nacimiento'=>null, 'sexo'=>'');
+		$data['errores'] = null;
 		$this->load->view('templates/header', $data);
 		$this->load->view('inicio', $data);
 		$this->load->view('templates/footer');

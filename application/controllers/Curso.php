@@ -23,7 +23,9 @@
                 $this->load->view('lista_cursos', $data);
                 $this->load->view('templates/footer');
             }else{
-                echo '404 ¿Qué intentas hacer?';
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/error_page');
+                $this->load->view('footer');
             }
         }
 
@@ -46,7 +48,9 @@
                 $this->load->view('explicacion', $data);
                 $this->load->view('templates/footer');
             }else{
-                echo '404 ¿Qué intentas hacer?';
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/error_page');
+                $this->load->view('footer');
             }
         }
     }

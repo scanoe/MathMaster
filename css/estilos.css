@@ -42,6 +42,9 @@ nav{
 .center{
     margin: 0 auto;
 }
+.clear{
+    clear: both;
+}
 .contenedor{
     position: relative;
     top: 90px;
@@ -104,7 +107,9 @@ nav{
 .m20-0{
     margin: 20px 0;
 }
-
+.margin-card{
+    margin: 0 0.5rem 24px 0.5rem;
+}
 .mb-20{
     margin-bottom: 20px;
 }
@@ -119,6 +124,9 @@ nav{
     padding-right: 0.5em;
     position: relative;
     top: 3px;
+}
+.mt-10{
+    margin-top: 10px;
 }
 .mt-20{
     margin-top:20px;
@@ -169,6 +177,9 @@ nav{
 .p0-1em{
     padding: 0 1em;
 }
+.p-card{
+    padding: 24px 0.5rem;
+}
 .prev-img{
     width: 64px;
     height: 64px;
@@ -186,6 +197,9 @@ nav{
     border-radius: 10px;
     width: 83%;
     margin-bottom: 30px;
+}
+.p24-0{
+    padding: 24px 0;
 }
 .pr-32{
     padding-right: 32px;
