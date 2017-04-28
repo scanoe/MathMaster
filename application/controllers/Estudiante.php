@@ -66,7 +66,7 @@ class Estudiante extends CI_Controller {
             $this->session->set_userdata($usuario_data);
             redirect('Curso/cargar_lista_cursos');
         }else{
-            echo 'asdasd';
+            redirect('Inicio/cargar_inicio');
         }
     }
 
