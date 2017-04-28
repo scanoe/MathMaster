@@ -32,9 +32,10 @@ class pregunta extends CI_Controller {
             }
             $this->load->view("templates/footer",$data);
         }else{
+            $data['title'] = '404 Página no encontrada';
             $this->load->view('templates/header', $data);
             $this->load->view('templates/error_page');
-            $this->load->view('footer');
+            $this->load->view('templates/footer');
         }
     }
 
