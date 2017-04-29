@@ -45,16 +45,20 @@ class pregunta_model extends CI_Model {
 	}
 
 	public function obtener_pregunta_aleatoria($curso){
-		$sql = "SELECT * FROM `pregunta` WHERE `curso` = ? ORDER BY rand() LIMIT 1";
-		$query = $this->db->query($sql, array($curso));
-		return $query->result();
+        $this->db->select('*');
+        $this->db->from('pregunta');
+        $this->db->where('curso',$curso);
+        $this->db->order_by('rand()');
+        $this->db->limit(1);
+        $query = $this->db->get();
+        return $query->result()[0];
+
 	}
 	
 	public function obtener_pregunta_por_id($id){
-		$query=$this->db->get_where('pregunta', ['id' => $id]);
-		$result=$query->result();
-		foreach ($query->result() as $key=>$pregunta_model) {
-		$result[$key] = new pregunta_model($pregunta_model);
+		$query=$this->db->get_where('pregunta', array('id' => $id));
+		foreach ($query->result() as $key=>$pregunta) {
+			$result[$key] = new pregunta_model($pregunta);
 		}
 		return $result[0];
 	}

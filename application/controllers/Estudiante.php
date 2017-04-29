@@ -5,7 +5,7 @@ class Estudiante extends CI_Controller {
 
 	public function registrar(){
         $username = $this->input->post('username');
-        $nombre = $this->input->post('nombre');
+        $nombre = $this->input->post('nacimiento');
         $pass = $this->input->post('password');
         $fecha_nacimiento = $this->input->post('nacimiento');
         $sexo = $this->input->post('genero');

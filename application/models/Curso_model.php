@@ -52,9 +52,12 @@
         }
 
         public function obtener_nombre_curso($id_pregunta){
-            $sql = "SELECT `nombre` FROM ((SELECT `curso` FROM pregunta WHERE `id` = ?) AS a JOIN curso ON a.curso = curso.id)";
-            $query = $this->db->query($sql, array($id_pregunta));
-            return $query->result();
+            $this->db->select('*');
+            $this->db->from('pregunta p');
+            $this->db->join('curso c', 'c.id=p.curso');
+            $this->db->where('p.id',$id_pregunta);
+            $query = $this->db->get();
+            return $query->result()[0];
         }
     }
 ?>

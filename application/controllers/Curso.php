@@ -16,7 +16,7 @@
                 $data['cursos'] = $cursos;
                 $data['title'] = 'Hola '.$this->session->userdata('username');
                 $estudiante = new Estudiante_model(array('username'=>$this->session->userdata('username')));       
-                $data['monedas'] = $estudiante->get_monedas()[0]->monedas;
+                $data['monedas'] = $estudiante->get_monedas();
                 $data['nombre'] = $this->session->userdata('username');
                 $this->load->view('templates/header', $data);
                 $this->load->view('templates/nav', $data);
@@ -39,7 +39,7 @@
                 if(!empty($nombre))
                     $data['title'] = $nombre;
                 $estudiante = new Estudiante_model(array('username'=>$this->session->userdata('username')));       
-                $data['monedas'] = $estudiante->get_monedas()[0]->monedas;
+                $data['monedas'] = $estudiante->get_monedas();
                 $data['nombre'] = $this->session->userdata('username');
                 $data['id'] = $curso_id;
                 $this->load->view('templates/header', $data);
