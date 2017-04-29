@@ -129,7 +129,7 @@ class pregunta extends CI_Controller {
             if($monedas >= 2){
                 $monedas -= 2;
                 $estudiante->actualizar_monedas($monedas);
-                $curso_id = $curso->obtener_id_curso($id)[0]->curso;
+                $curso_id = $curso->obtener_id_curso($id);
                 $data["pregunta"]= $this->pregunta_model->obtener_pregunta_aleatoria($curso_id)[0];
                 $usuario_data = array(
                     'username' => $this->session->userdata('username'),

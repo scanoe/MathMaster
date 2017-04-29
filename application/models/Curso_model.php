@@ -37,21 +37,18 @@
         }
 
         public function obtener_explicacion($id){
-            $sql = 'SELECT `explicacion` FROM `curso` WHERE `id` = ?';
-            $query = $this->db->query($sql, array($id));
-            return $query->result();
+            $query = $this->db->get_where('curso', array('id'=>$id));
+            return $query->result()[0]->explicacion;
         }
 
         public function obtener_nombre($id){
-            $sql = 'SELECT `nombre` FROM `curso` WHERE `id` = ?';
-            $query = $this->db->query($sql, array($id));
-            return $query->result();
+            $query = $this->db->get_where('curso', array('id'=>$id));
+            return $query->result()[0]->nombre;
         }
 
         public function obtener_id_curso($id_pregunta){
-            $sql = "SELECT `curso` FROM pregunta WHERE `id` = ?";
-            $query = $this->db->query($sql, array($id_pregunta));
-            return $query->result();
+            $query = $this->db->get_where('pregunta', array('id'=>$id_pregunta));
+            return $query->result()[0]->curso;
         }
 
         public function obtener_nombre_curso($id_pregunta){

@@ -29,16 +29,15 @@
             }
         }
 
-        public function cargar_explicacion($curso_id){
-            if(!empty($this->session->userdata('username'))){
+        public function cargar_explicacion($curso_id){           
+            if(!empty($this->session->userdata('username'))){            
                 $this->load->model('Curso_model');
                 $this->load->model('Estudiante_model');
                 $curso = new Curso_model();
-                $explicacion = $curso->obtener_explicacion($curso_id);
                 $nombre = $curso->obtener_nombre($curso_id);
-                $data['explicacion'] = $explicacion[0]->explicacion;
+                $data['explicacion'] = $curso->obtener_explicacion($curso_id);
                 if(!empty($nombre))
-                    $data['title'] = $nombre[0]->nombre;
+                    $data['title'] = $nombre;
                 $estudiante = new Estudiante_model(array('username'=>$this->session->userdata('username')));       
                 $data['monedas'] = $estudiante->get_monedas()[0]->monedas;
                 $data['nombre'] = $this->session->userdata('username');
