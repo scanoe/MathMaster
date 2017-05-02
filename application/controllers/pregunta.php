@@ -11,8 +11,8 @@ class pregunta extends CI_Controller {
             $curso = new Curso_model();
             $estudiante = new Estudiante_model(array('username'=>$this->session->userdata('username')));
             $nombre_curso = $curso->obtener_nombre_curso($curso_id)->nombre;
-            $data["nombre"] = $estudiante->obtener_nombre();
-            $data['monedas'] = $estudiante->get_monedas();
+            $data["nombre"] = $estudiante->__get("nombres");
+            $data['monedas'] = $estudiante->__get("monedas");
             $data["pregunta"]= $this->pregunta_model->obtener_pregunta_aleatoria($curso_id);
             $data["contador"] = 0;
             $data['title'] = 'Test de '.$nombre_curso;
@@ -51,11 +51,11 @@ class pregunta extends CI_Controller {
             $respuesta=$this->input->post('grupo-preguntas');
             $contador = $this->session->userdata('progreso');
             if ($pregunta->respuesta==$respuesta) {
-                $monedas = $estudiante->get_monedas();
+                $monedas = $estudiante->__get("monedas");
                 $monedas++;
                 $estudiante->actualizar_monedas($monedas);
                 $contador++;
-                $data['nombre'] = $estudiante->obtener_nombre();                                                                        
+                $data['nombre'] = $estudiante->__get("username");                                                                        
                 $data['monedas'] = $monedas;
                 if ($contador < 10) {
                     $curso_id = $this->session->userdata('pregunta')->curso;
@@ -76,26 +76,29 @@ class pregunta extends CI_Controller {
                     }else{
                         $this->load->view("pregunta_op_multiple",$data);
                     }
-                }else{
+                }elseif($contador == 10){
                     $data['title'] = 'Curso aprobado';
                     $this->load->view('templates/header', $data);
                     $this->load->view("templates/nav",$data);
-                    $data['curso'] = 'curso_prueba';
                     $this->load->view('curso_aprobado', $data);
                     $usuario_data = array(
                         'username' => $this->session->userdata('username'),
-                        'progreso' => 0,
-                        'pregunta' => null
+                        'progreso' => 11,
+                        'pregunta' => $this->session->userdata('pregunta')
                     );
+                    $puntos = $estudiante->__get("puntos") + 10;
+                    $estudiante->actualizar_experiencia($puntos);
                     $this->session->set_userdata($usuario_data);
+                }else{
+                    redirect('Curso/cargar_lista_cursos');
                 }
                 $this->load->view('templates/footer');
             }else{
                 $data["pregunta"] = $this->session->userdata('pregunta');
                 $data["contador"]=$contador;
                 $data['title'] = 'Test de '.$nombre_curso;
-                $data['monedas'] = $estudiante->get_monedas();
-                $data['nombre'] = $estudiante->obtener_nombre();                                                                        
+                $data['monedas'] = $estudiante->__get("monedas");
+                $data['nombre'] = $estudiante->__get("nombres");                                                                        
                 $data['progress'] = $contador * 10;
                 $this->load->view('templates/header', $data);
                 $this->load->view("templates/nav",$data);
@@ -124,7 +127,7 @@ class pregunta extends CI_Controller {
             $this->load->model("Curso_model");
             $curso = new Curso_model();
             $nombre_curso = $curso->obtener_nombre_curso($this->session->userdata('pregunta')->id)->nombre;
-            $monedas = $estudiante->get_monedas();
+            $monedas = $estudiante->__get("monedas");
             $id = $this->session->userdata('pregunta')->id;
             if($monedas >= 2){
                 $monedas -= 2;
@@ -137,7 +140,7 @@ class pregunta extends CI_Controller {
                     'pregunta' => $data["pregunta"]
                 );
                 $this->session->set_userdata($usuario_data);
-                $data['nombre'] = $estudiante->obtener_nombre();  
+                $data['nombre'] = $estudiante->__get("nombres");  
                 $data['monedas'] = $monedas;
                 $data["contador"] = $this->session->userdata('progreso');
                 $data['title'] = 'Test de '.$nombre_curso;
@@ -152,7 +155,7 @@ class pregunta extends CI_Controller {
                 $this->load->view('templates/footer');
             }else{
                 $data["pregunta"]= $this->pregunta_model->obtener_pregunta_por_id($id);
-                $data['nombre'] = $estudiante->obtener_nombre();  
+                $data['nombre'] = $estudiante->__get("nombres");  
                 $data['monedas'] = $monedas;
                 $data["contador"] = $this->session->userdata('progreso');
                 $data['title'] = 'Test de '.$nombre_curso;
@@ -185,7 +188,7 @@ class pregunta extends CI_Controller {
             $curso = new Curso_model();
             $nombre_curso = $curso->obtener_nombre_curso($this->session->userdata('pregunta')->id)->nombre;
             $pregunta= $this->pregunta_model->obtener_pregunta_por_id($this->session->userdata('pregunta')->id);
-            $monedas = $estudiante->get_monedas();
+            $monedas = $estudiante->__get("monedas");
             $contador = $this->session->userdata('progreso');
             if($monedas >= 10) {
                 $monedas=$monedas-10;
@@ -210,7 +213,7 @@ class pregunta extends CI_Controller {
                 $data["pregunta"]= $pregunta;
                 $data["contador"]=$contador;
                 $data['title'] = 'Test de '.$nombre_curso;
-                $data['monedas'] = $estudiante->get_monedas();
+                $data['monedas'] = $estudiante->__get("monedas");
                 $data['nombre'] = $this->session->userdata('username');
                 $data['progress'] = $contador * 10;
                 $this->load->view('templates/header', $data);

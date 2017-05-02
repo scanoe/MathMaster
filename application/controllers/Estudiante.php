@@ -74,4 +74,21 @@ class Estudiante extends CI_Controller {
         $this->session->sess_destroy();
         redirect('Inicio/cargar_inicio');
     }
+
+    public function cargar_tabla_de_puntuaciones(){
+        $this->load->model("Estudiante_model");
+        $estudiante = new Estudiante_model(array('username'=>$this->session->userdata('username')));
+        $data['title'] = 'Tabla de puntuaciones';
+        $data['nombre'] = $this->session->userdata('username');
+        $data['monedas'] = $estudiante->__get("monedas");
+        $estudiantes = $estudiante->obtener_estudiantes_ordenados_por_puntos();
+        $data['primer_estudiante'] = $estudiantes[0];
+        $data['segundo_estudiante'] = $estudiantes[1];
+        $data['tercer_estudiante'] = $estudiantes[2]; //Que pasa si no existe
+        $data['estudiantes'] = array_slice($estudiantes, 3);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/nav', $data);
+		$this->load->view('tabla_puntuaciones', $data);
+		$this->load->view('templates/footer');
+    }
 }
