@@ -227,6 +227,9 @@ nav{
 .pt-40{
     padding-top: 40px;
 }
+.p0-5p{
+    padding: 0 5%;
+}
 .submit{
     width: 50%;
     border-radius: 8px;

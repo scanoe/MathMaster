@@ -39,19 +39,20 @@ CREATE TABLE lista_cursos_aprobados (
 	CONSTRAINT estudiante_curso FOREIGN KEY (nombre_usuario) REFERENCES estudiante (nombre_usuario)
 ) ENGINE = InnoDB;
 
-CREATE TABLE insiginia (
+CREATE TABLE insignia (
+	id 			INT NOT NULL AUTO_INCREMENT,
 	nombre		VARCHAR(100)  NOT NULL ,
 	imagen      VARCHAR(2000)  NOT NULL,
 	descripcion	VARCHAR(1000) NOT NULL,
 	curso 		INT NOT NULL,
-	PRIMARY KEY (nombre),
-	CONSTRAINT insiginia_curso FOREIGN KEY (curso) REFERENCES curso (id)
+	PRIMARY KEY (id),
+	CONSTRAINT insignia_curso FOREIGN KEY (curso) REFERENCES curso (id)
 ) ENGINE = InnoDB;
 
 CREATE TABLE insiginiaXestudiante (
-	nombre_insiginia	VARCHAR(100)  NOT NULL ,
+	id_insignia			INT  NOT NULL ,
 	nombre_usuario		VARCHAR(15)  NOT NULL,
-	CONSTRAINT insiginia_usuario FOREIGN KEY (nombre_insiginia) REFERENCES insiginia (nombre),
-	CONSTRAINT estudiante_insiginia FOREIGN KEY (nombre_usuario) REFERENCES estudiante (nombre_usuario),
-	PRIMARY KEY (nombre_insiginia,nombre_usuario)
+	CONSTRAINT id_insiginia FOREIGN KEY (id_insignia) REFERENCES insignia (id),
+	CONSTRAINT estudiante_insignia FOREIGN KEY (nombre_usuario) REFERENCES estudiante (nombre_usuario),
+	PRIMARY KEY (id_insignia,nombre_usuario)
 ) ENGINE = InnoDB;

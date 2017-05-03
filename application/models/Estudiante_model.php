@@ -116,5 +116,19 @@
                     ->get();
             return $query->result();
         }
+
+        public function agregar_insignia($insignia){
+            if(!$insignia->existe_insignia_por_estudiante($this->username)){
+                $data = array(
+                    'nombre_usuario' => $this->username,
+                    'id_insignia' => $insignia->obtener_id()
+                );
+                if ($this->db->insert('insiginiaxestudiante', $data))
+                    return TRUE;
+                else
+                    return FALSE;
+            }
+            return FALSE;
+        }
     }
 ?>

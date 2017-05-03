@@ -76,19 +76,38 @@ class Estudiante extends CI_Controller {
     }
 
     public function cargar_tabla_de_puntuaciones(){
+        if(!empty($this->session->userdata('username'))){
+            $this->load->model("Estudiante_model");
+            $estudiante = new Estudiante_model(array('username'=>$this->session->userdata('username')));
+            $data['title'] = 'Tabla de puntuaciones';
+            $data['nombre'] = $this->session->userdata('username');
+            $data['monedas'] = $estudiante->__get("monedas");
+            $estudiantes = $estudiante->obtener_estudiantes_ordenados_por_puntos();
+            $data['primer_estudiante'] = $estudiantes[0];
+            $data['segundo_estudiante'] = $estudiantes[1];
+            $data['tercer_estudiante'] = $estudiantes[2]; //Que pasa si no existe
+            $data['estudiantes'] = array_slice($estudiantes, 3);
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/nav', $data);
+            $this->load->view('tabla_puntuaciones', $data);
+            $this->load->view('templates/footer');
+        }else{
+            $data['title'] = '404: Pagina no encontrada';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/error_page');
+            $this->load->view('templates/footer');
+        }
+    }
+
+    public function cargar_perfil(){
         $this->load->model("Estudiante_model");
         $estudiante = new Estudiante_model(array('username'=>$this->session->userdata('username')));
-        $data['title'] = 'Tabla de puntuaciones';
+        $data['title'] = 'Perfil de '.$this->session->userdata('username');
         $data['nombre'] = $this->session->userdata('username');
         $data['monedas'] = $estudiante->__get("monedas");
-        $estudiantes = $estudiante->obtener_estudiantes_ordenados_por_puntos();
-        $data['primer_estudiante'] = $estudiantes[0];
-        $data['segundo_estudiante'] = $estudiantes[1];
-        $data['tercer_estudiante'] = $estudiantes[2]; //Que pasa si no existe
-        $data['estudiantes'] = array_slice($estudiantes, 3);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav', $data);
-		$this->load->view('tabla_puntuaciones', $data);
-		$this->load->view('templates/footer');
+        $this->load->view('perfil', $data);
+        $this->load->view('templates/footer');
     }
 }

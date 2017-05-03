@@ -22,3 +22,4 @@ VALUES
 (NULL, '¿Cuánto es 7 + 2?', 'a', '9', NULL, NULL, NULL, '1'), 
 (NULL, '¿Cuánto es 7 * 2?', 'o', '14', '13', '15', '12', '1')
 
+INSERT INTO `insignia` (`id`, `nombre`, `imagen`, `descripcion`, `curso`) VALUES (NULL, 'Curso de operaciones Básicas aprobado', 'medal1.jpg', 'Esta insignia se otorga a quien haya aprobado el curso de Operaciones Básicas', '1')
