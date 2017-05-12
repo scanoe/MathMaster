@@ -9,10 +9,12 @@
         private $sexo;
         private $monedas;
         private $puntos;
+		private $PasswordHash;
 
         public function __construct($value = null){
             parent::__construct();
             $this->load->database();
+			$this->load->library('PasswordHash');
             if ($value != null)
                 settype($value, 'object');
             if (is_object($value)) {
@@ -23,31 +25,32 @@
                 $this->sexo = isset($value->sexo) ? $value->sexo : null;
                 $this->monedas = isset($value->monedas) ? $value->monedas : null;
                 $this->puntos = isset($value->puntos) ? $value->puntos : null;
+				$this->PasswordHash = new PasswordHash();
             }
         }
 
         public function __get($key){
             switch ($key) {
                 case 'username' :
-                    $query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
+					$query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
                     return $query->result()[0]->nombre_usuario;
                 case 'nombres' :
-                    $query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
+					$query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
                     return $query->result()[0]->nombre;
                 case 'pass' :
-                    $query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
+					$query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
                     return $query->result()[0]->contraseña;
                 case 'fecha_nacimiento' :
-                    $query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
+					$query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
                     return $query->result()[0]->fecha_nacimiento;
                 case 'sexo' :
-                    $query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
+					$query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
                     return $query->result()[0]->genero;
                 case 'monedas' :
-                    $query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
+					$query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
                     return $query->result()[0]->monedas;
                 case 'puntos' :
-                    $query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
+					$query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
                     return $query->result()[0]->puntos;
                 default:
                     return parent::__get($key);
@@ -73,11 +76,14 @@
 
         public function validar_login(){
             $errores = [];
-            $query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username, 'contraseña' => $this->pass));
+            $query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
             $result = $query->result();
             if (empty($result)) {
                 $errores["login"] = 'No existe el usuario';
             }
+			elseif(!$this->PasswordHash->CheckPassword($this->pass, $result[0]->contraseña)) {
+				$errores["login"] = 'Usuario o contraseña incorrectos';
+			}
             return $errores;
         }
 
@@ -85,7 +91,7 @@
             $data = array(
                 'nombre_usuario' => $this->username,
                 'nombre' => $this->nombres,
-                'contraseña' => $this->pass,
+                'contraseña' => $this->PasswordHash->HashPassword($this->pass),
                 'fecha_nacimiento' => $this->fecha_nacimiento,
                 'genero' => $this->sexo,
                 'monedas' => 0,
