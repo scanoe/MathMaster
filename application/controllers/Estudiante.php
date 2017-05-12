@@ -5,7 +5,7 @@ class Estudiante extends CI_Controller {
 
 	public function registrar(){
         $username = $this->input->post('username');
-        $nombre = $this->input->post('nacimiento');
+        $nombre = $this->input->post('nombre');
         $pass = $this->input->post('password');
         $fecha_nacimiento = $this->input->post('nacimiento');
         $sexo = $this->input->post('genero');
@@ -105,6 +105,9 @@ class Estudiante extends CI_Controller {
         $data['title'] = 'Perfil de '.$this->session->userdata('username');
         $data['nombre'] = $this->session->userdata('username');
         $data['monedas'] = $estudiante->__get("monedas");
+        $data['nombre_completo'] = $estudiante->__get("nombres");
+        $data['cursos_aprobados'] = $estudiante->obtener_cursos_aprobados();
+        $data['insignias_ganadas'] = $estudiante->obtener_insignias_ganadas();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav', $data);
         $this->load->view('perfil', $data);

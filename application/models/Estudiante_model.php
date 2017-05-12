@@ -136,5 +136,37 @@
             }
             return FALSE;
         }
+
+        public function agregar_curso_aprobado($curso){
+            $data = array(
+                'nombre_usuario' => $this->username,
+                'curso' => $curso
+            );
+            $curso_ya_aprobado = !empty($this->db->get_where('lista_cursos_aprobados', $data));
+            if(!$curso_ya_aprobado)
+                if ($this->db->insert('lista_cursos_aprobados', $data))
+                    return TRUE;
+                else
+                    return FALSE;
+            return FALSE;
+        }
+
+        public function obtener_cursos_aprobados(){
+            $this->db->select('*');
+            $this->db->from('curso c');
+            $this->db->join('lista_cursos_aprobados l', 'c.id=l.curso');
+            $this->db->where('l.nombre_usuario',$this->username);
+            $query = $this->db->get();
+            return $query->result();
+        }
+
+        public function obtener_insignias_ganadas(){
+            $this->db->select('*');
+            $this->db->from('insignia i');
+            $this->db->join('insiginiaxestudiante ixe', 'i.id=ixe.id_insignia');
+            $this->db->where('ixe.nombre_usuario',$this->username);
+            $query = $this->db->get();
+            return $query->result();
+        }
     }
 ?>

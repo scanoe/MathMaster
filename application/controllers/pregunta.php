@@ -96,6 +96,7 @@ class pregunta extends CI_Controller {
                     );
                     $puntos = $estudiante->__get("puntos") + 10;
                     $estudiante->actualizar_experiencia($puntos);
+                    $estudiante->agregar_curso_aprobado($id_curso);
                     $this->session->set_userdata($usuario_data);
                 }else{
                     redirect('Curso/cargar_lista_cursos');
