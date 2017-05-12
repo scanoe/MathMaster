@@ -22,7 +22,7 @@
                 $this->nombres = isset($value->nombres) ? $value->nombres : null;
                 $this->pass = isset($value->pass) ? $value->pass : null;
                 $this->fecha_nacimiento = isset($value->fecha_nacimiento) ? $value->fecha_nacimiento : null;
-                $this->sexo = isset($value->sexo) ? $value->sexo : null;
+                $this->sexo = isset($value->sexo) ? $value->sexo : 'F';
                 $this->monedas = isset($value->monedas) ? $value->monedas : null;
                 $this->puntos = isset($value->puntos) ? $value->puntos : null;
 				$this->PasswordHash = new PasswordHash();

@@ -2,8 +2,8 @@ CREATE TABLE estudiante (
 	nombre_usuario  	VARCHAR(15)   NOT NULL,
 	nombre           	VARCHAR(30)  NOT NULL,
 	fecha_nacimiento	DATE  NOT NULL,
-	contraseña          VARCHAR(49)   NOT NULL,
-	genero           	VARCHAR(1)   NOT NULL,
+	contraseña          VARCHAR(256)   NOT NULL,
+	genero           	VARCHAR(1) DEFAULT 'F'   NOT NULL,
 	monedas             INTEGER UNSIGNED DEFAULT 0  NOT NULL,
 	puntos             	INTEGER UNSIGNED DEFAULT 0  NOT NULL,
 	PRIMARY KEY (nombre_usuario)
