@@ -52,5 +52,25 @@
                 $this->load->view('footer');
             }
         }
+        
+        public function administrar_cursos(){
+            if(!empty($this->session->userdata('username'))){
+                $this->load->model('Curso_model');
+                $this->load->model('profesor_model');
+                $curso = new Curso_model();
+                $cursos = $curso->obtener_todos();
+                $data['cursos'] = $cursos;
+                $data['title'] = 'Hola '.$this->session->userdata('username');
+                $data['nombre'] = $this->session->userdata('username');
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/nav', $data);
+                $this->load->view('lista_cursos', $data); //Se cambia luego por una vista "administrar_cursos"
+                $this->load->view('templates/footer');
+            }else{
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/error_page');
+                $this->load->view('footer');
+            }
+        }
     }
 ?>
