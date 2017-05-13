@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-<<<<<<< HEAD
+
         public function __construct($value = null){
             parent::__construct();
             $this->load->database();
@@ -31,7 +31,6 @@ class Estudiante_model extends CI_Model {
     private $monedas;
     private $puntos;
     private $PasswordHash;
->>>>>>> origin/master
 
     public function __construct($value = null) {
         parent::__construct();
@@ -160,7 +159,6 @@ class Estudiante_model extends CI_Model {
 
 }
 
-<<<<<<< HEAD
         public function agregar_insignia($insignia){
             if(!$insignia->existe_insignia_por_estudiante($this->username)){
                 $data = array(
@@ -207,6 +205,4 @@ class Estudiante_model extends CI_Model {
             return $query->result();
         }
     }
-=======
->>>>>>> origin/master
 ?>
