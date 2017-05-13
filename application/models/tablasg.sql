@@ -1,9 +1,13 @@
-CREATE TABLE estudiante (
+﻿CREATE TABLE estudiante (
 	nombre_usuario  	VARCHAR(15)   NOT NULL,
 	nombre           	VARCHAR(30)  NOT NULL,
 	fecha_nacimiento	DATE  NOT NULL,
 	contraseña          VARCHAR(256)   NOT NULL,
+<<<<<<< HEAD
 	genero           	VARCHAR(1) DEFAULT 'F'   NOT NULL,
+=======
+	genero           	VARCHAR(1)   NOT NULL,
+>>>>>>> origin/master
 	monedas             INTEGER UNSIGNED DEFAULT 0  NOT NULL,
 	puntos             	INTEGER UNSIGNED DEFAULT 0  NOT NULL,
 	PRIMARY KEY (nombre_usuario)
@@ -55,4 +59,15 @@ CREATE TABLE insiginiaXestudiante (
 	CONSTRAINT id_insiginia FOREIGN KEY (id_insignia) REFERENCES insignia (id),
 	CONSTRAINT estudiante_insignia FOREIGN KEY (nombre_usuario) REFERENCES estudiante (nombre_usuario),
 	PRIMARY KEY (id_insignia,nombre_usuario)
+) ENGINE = InnoDB;
+
+CREATE TABLE profesor (
+	nombre_usuario VARCHAR(15) NOT NULL ,
+	nombre VARCHAR(30) NOT NULL ,
+	fecha_nacimiento DATE NOT NULL ,
+	contraseña VARCHAR(256) NOT NULL ,
+	genero VARCHAR(1) NOT NULL ,
+	correo VARCHAR(40) NOT NULL ,
+	area_trabajo VARCHAR(40) NOT NULL ,
+	PRIMARY KEY (nombre_usuario)
 ) ENGINE = InnoDB;
