@@ -62,4 +62,22 @@ class pregunta_model extends CI_Model {
 		}
 		return $result[0];
 	}
+
+	public function agregar_pregunta($curso_id){
+				$data = [
+			'enunciado' => $this->enunciado,
+			'tipo_de_respuesta' => $this->tipo_de_respuesta,
+			'respuesta' => $this->respuesta,
+			'respuesta_incorrecta1' => $this->respuesta_incorrecta1,
+			'respuesta_incorrecta2' => $this->respuesta_incorrecta2,
+			'respuesta_incorrecta3' => $this->respuesta_incorrecta3,
+			'curso'=> $curso_id
+
+
+		];
+
+		return $this->db->insert('pregunta', $data);
+
+
+	}
 }
