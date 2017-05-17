@@ -113,4 +113,59 @@ class Estudiante extends CI_Controller {
         $this->load->view('perfil', $data);
         $this->load->view('templates/footer');
     }
+
+    public function cargar_vista_editar_perfil(){
+        if(!empty($this->session->userdata('username'))){
+            $this->load->model("Estudiante_model");
+            $estudiante = new Estudiante_model(array('username'=>$this->session->userdata('username')));
+            $data['errores'] = [];
+            $data['title'] = 'Perfil de '.$this->session->userdata('username');
+            $data['nombre'] = $this->session->userdata('username');
+            $data['monedas'] = $estudiante->__get("monedas");
+            $data['nombre_completo'] = $estudiante->__get("nombres");
+            $data['cursos_aprobados'] = $estudiante->obtener_cursos_aprobados();
+            $data['insignias_ganadas'] = $estudiante->obtener_insignias_ganadas();
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/nav', $data);
+            $this->load->view("editar_perfil", $data);
+            $this->load->view('templates/footer');
+        }else{
+            $data['title'] = '404: Pagina no encontrada';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/error_page');
+            $this->load->view('templates/footer');
+        }
+    }
+
+    public function editar_perfil(){
+        if(!empty($this->session->userdata('username'))){
+            $nombre = $this->input->post("nombre");
+            $this->load->model("Estudiante_model");
+            $estudiante = new Estudiante_model(array('username'=>$this->session->userdata('username')));
+            $nombre_actual = $estudiante->__get("nombres");
+            if ($nombre != null){
+                if($nombre != $nombre_actual){
+                    $estudiante->actualizar_nombre($nombre);
+                }
+                $this->cargar_perfil();
+            }else{
+                $data['title'] = 'Perfil de '.$this->session->userdata('username');
+                $data['errores'] = ["Debes de ingresar un nombre"];
+                $data['nombre'] = $this->session->userdata('username');
+                $data['monedas'] = $estudiante->__get("monedas");
+                $data['nombre_completo'] = $nombre_actual;
+                $data['cursos_aprobados'] = $estudiante->obtener_cursos_aprobados();
+                $data['insignias_ganadas'] = $estudiante->obtener_insignias_ganadas();
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/nav', $data);
+                $this->load->view("editar_perfil", $data);
+                $this->load->view('templates/footer');
+            }
+        }else{
+            $data['title'] = '404: Pagina no encontrada';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/error_page');
+            $this->load->view('templates/footer');
+        }
+    }
 }

@@ -59,115 +59,121 @@ class Estudiante_model extends CI_Model {
         }
     }
 
-        public function validar() {
-            $errores = [];
-            $query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
-            $result = $query->result();
-            if (!empty($result))
-                $errores["user"] = 'Ya existe el usuario';
-            elseif ($this->username == null)
-                $errores["user"] = 'Escribe un nombre de usuario';
-            if ($this->nombres == null)
-                $errores["nombre"] = 'Escribe un nombre';
-            if ($this->pass == null)
-                $errores["pass"] = 'Escribe una contraseña';
-            if ($this->fecha_nacimiento == null)
-                $errores["fecha_nacimiento"] = 'Escribe una fecha de nacimiento';
-            return $errores;
-        }
+    public function validar() {
+        $errores = [];
+        $query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
+        $result = $query->result();
+        if (!empty($result))
+            $errores["user"] = 'Ya existe el usuario';
+        elseif ($this->username == null)
+            $errores["user"] = 'Escribe un nombre de usuario';
+        if ($this->nombres == null)
+            $errores["nombre"] = 'Escribe un nombre';
+        if ($this->pass == null)
+            $errores["pass"] = 'Escribe una contraseña';
+        if ($this->fecha_nacimiento == null)
+            $errores["fecha_nacimiento"] = 'Escribe una fecha de nacimiento';
+        return $errores;
+    }
 
-        public function validar_login() {
-            $errores = [];
-            $query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
-            $result = $query->result();
-            if (empty($result)) {
-                $errores["login"] = 'No existe el usuario';
-            } elseif (!$this->PasswordHash->CheckPassword($this->pass, $result[0]->contraseña)) {
-                $errores["login"] = 'Usuario o contraseña incorrectos';
-            }
-            return $errores;
+    public function validar_login() {
+        $errores = [];
+        $query = $this->db->get_where('estudiante', array('nombre_usuario' => $this->username));
+        $result = $query->result();
+        if (empty($result)) {
+            $errores["login"] = 'No existe el usuario';
+        } elseif (!$this->PasswordHash->CheckPassword($this->pass, $result[0]->contraseña)) {
+            $errores["login"] = 'Usuario o contraseña incorrectos';
         }
+        return $errores;
+    }
 
-        public function registrar() {
+    public function registrar() {
+        $data = array(
+            'nombre_usuario' => $this->username,
+            'nombre' => $this->nombres,
+            'contraseña' => $this->PasswordHash->HashPassword($this->pass),
+            'fecha_nacimiento' => $this->fecha_nacimiento,
+            'genero' => $this->sexo,
+            'monedas' => 0,
+            'puntos' => 0
+        );
+        if ($this->db->insert('estudiante', $data))
+            return TRUE;
+        else
+            return FALSE;
+    }
+
+    public function actualizar_monedas($monedas) {
+        $this->db->set('monedas', $monedas, FALSE);
+        $this->db->where('nombre_usuario', $this->username);
+        $this->db->update('Estudiante');
+    }
+
+    public function actualizar_experiencia($experiencia) {
+        $this->db->set('puntos', $experiencia, FALSE);
+        $this->db->where('nombre_usuario', $this->username);
+        $this->db->update('Estudiante');
+    }
+
+    public function obtener_estudiantes_ordenados_por_puntos() {
+        $query = $this->db->select('*')
+                ->from('estudiante')
+                ->order_by('puntos DESC')
+                ->get();
+        return $query->result();
+    }
+
+    public function agregar_insignia($insignia) {
+        if (!$insignia->existe_insignia_por_estudiante($this->username)) {
             $data = array(
                 'nombre_usuario' => $this->username,
-                'nombre' => $this->nombres,
-                'contraseña' => $this->PasswordHash->HashPassword($this->pass),
-                'fecha_nacimiento' => $this->fecha_nacimiento,
-                'genero' => $this->sexo,
-                'monedas' => 0,
-                'puntos' => 0
+                'id_insignia' => $insignia->obtener_id()
             );
-            if ($this->db->insert('estudiante', $data))
+            if ($this->db->insert('insiginiaxestudiante', $data))
                 return TRUE;
             else
                 return FALSE;
         }
-
-        public function actualizar_monedas($monedas) {
-            $this->db->set('monedas', $monedas, FALSE);
-            $this->db->where('nombre_usuario', $this->username);
-            $this->db->update('Estudiante');
-        }
-
-        public function actualizar_experiencia($experiencia) {
-            $this->db->set('puntos', $experiencia, FALSE);
-            $this->db->where('nombre_usuario', $this->username);
-            $this->db->update('Estudiante');
-        }
-
-        public function obtener_estudiantes_ordenados_por_puntos() {
-            $query = $this->db->select('*')
-                    ->from('estudiante')
-                    ->order_by('puntos DESC')
-                    ->get();
-            return $query->result();
-        }
-
-        public function agregar_insignia($insignia) {
-            if (!$insignia->existe_insignia_por_estudiante($this->username)) {
-                $data = array(
-                    'nombre_usuario' => $this->username,
-                    'id_insignia' => $insignia->obtener_id()
-                );
-                if ($this->db->insert('insiginiaxestudiante', $data))
-                    return TRUE;
-                else
-                    return FALSE;
-            }
-            return FALSE;
-        }
-
-        public function agregar_curso_aprobado($curso){
-            $data = array(
-                'nombre_usuario' => $this->username,
-                'curso' => $curso
-            );
-            $curso_ya_aprobado = !empty($this->db->get_where('lista_cursos_aprobados', $data)->result());
-            if(!$curso_ya_aprobado)
-                if ($this->db->insert('lista_cursos_aprobados', $data))
-                    return TRUE;
-                else
-                    return FALSE;
-            return FALSE;
-        }
-
-        public function obtener_cursos_aprobados(){
-            $this->db->select('*');
-            $this->db->from('curso c');
-            $this->db->join('lista_cursos_aprobados l', 'c.id=l.curso');
-            $this->db->where('l.nombre_usuario',$this->username);
-            $query = $this->db->get();
-            return $query->result();
-        }
-
-        public function obtener_insignias_ganadas(){
-            $this->db->select('*');
-            $this->db->from('insignia i');
-            $this->db->join('insiginiaxestudiante ixe', 'i.id=ixe.id_insignia');
-            $this->db->where('ixe.nombre_usuario',$this->username);
-            $query = $this->db->get();
-            return $query->result();
-        }
+        return FALSE;
     }
+
+    public function agregar_curso_aprobado($curso){
+        $data = array(
+            'nombre_usuario' => $this->username,
+            'curso' => $curso
+        );
+        $curso_ya_aprobado = !empty($this->db->get_where('lista_cursos_aprobados', $data)->result());
+        if(!$curso_ya_aprobado)
+            if ($this->db->insert('lista_cursos_aprobados', $data))
+                return TRUE;
+            else
+                return FALSE;
+        return FALSE;
+    }
+
+    public function obtener_cursos_aprobados(){
+        $this->db->select('*');
+        $this->db->from('curso c');
+        $this->db->join('lista_cursos_aprobados l', 'c.id=l.curso');
+        $this->db->where('l.nombre_usuario',$this->username);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function obtener_insignias_ganadas(){
+        $this->db->select('*');
+        $this->db->from('insignia i');
+        $this->db->join('insiginiaxestudiante ixe', 'i.id=ixe.id_insignia');
+        $this->db->where('ixe.nombre_usuario',$this->username);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function actualizar_nombre($nombre){
+        $this->db->set('nombre', "$nombre");
+        $this->db->where('nombre_usuario', $this->username);
+        $this->db->update('estudiante');
+    }
+}
 ?>

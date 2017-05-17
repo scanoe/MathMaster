@@ -3,10 +3,11 @@
     <div class="col l8">
         <div class="p0-5p">
             <header class="center-align">
-                <figure><img class="responsive-img center" src="<?= base_url('img/usuario.jpg') ?>" height="100"></figure>
+                <figure><img class="responsive-img center" src="<?= base_url('img/usuario.jpg') ?>" height="100"></figure>               
                 <article class="mt-20">
                     <h2 class="fs1-5 grey-text"><?= $nombre?></h2>
                     <h1 class="fs2"><?= $nombre_completo ?></h1>
+                    <a href="<?=base_url()?>index.php/Estudiante/cargar_vista_editar_perfil">Editar</a>
                 </article>
             </header>
             <h3 class="center-align fs1-5 grey-text mt-40">Cursos Aprobados</h3>
