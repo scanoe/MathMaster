@@ -72,5 +72,29 @@
                 $this->load->view('footer');
             }
         }
+
+        public function actualizar_explicacion($id_curso=1){// el igual 1 se debe quitar para que reciba otro id_curso
+            $this->load->model('Curso_model');
+            $curso=new Curso_model();
+            $data['explicacion']=$curso->obtener_explicacion($id_curso);
+            $data['id']=$id_curso;
+            $this->load->view('actualizar_explicacion',$data);
+
+
+        }
+        public function cambiar_explicacion(){
+            $this->load->model('Curso_model');
+            $id_curso=$this->input->post('id');
+            $explicacion=$this->input->post('explicacion');
+            $curso=new Curso_model();
+            $result=$curso->cambiar_explicacion($id_curso,$explicacion);
+            if ($result == 1) {
+                echo "<h3>ingreso correcto</h3>";
+            }else{echo "<h3>ingreso incorrecto</h3>";}
+
+
+        }
+
+
     }
 ?>
