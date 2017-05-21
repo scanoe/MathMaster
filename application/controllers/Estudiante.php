@@ -84,9 +84,9 @@ class Estudiante extends CI_Controller {
             $data['nombre'] = $this->session->userdata('username');
             $data['monedas'] = $estudiante->__get("monedas");
             $estudiantes = $estudiante->obtener_estudiantes_ordenados_por_puntos();
-            $data['primer_estudiante'] = $estudiantes[0];
-            $data['segundo_estudiante'] = $estudiantes[1];
-            $data['tercer_estudiante'] = $estudiantes[2]; //Que pasa si no existe
+            $data['primer_estudiante'] = isset($estudiantes[0]) ? $estudiantes[0] : null;
+            $data['segundo_estudiante'] = isset($estudiantes[1]) ? $estudiantes[1] : null;
+            $data['tercer_estudiante'] = isset($estudiantes[2]) ? $estudiantes[2] : null;
             $data['estudiantes'] = array_slice($estudiantes, 3);
             $this->load->view('templates/header', $data);
             $this->load->view('templates/nav', $data);
