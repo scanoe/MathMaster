@@ -3,11 +3,7 @@
 	nombre           	VARCHAR(30)  NOT NULL,
 	fecha_nacimiento	DATE  NOT NULL,
 	contraseña          VARCHAR(256)   NOT NULL,
-<<<<<<< HEAD
 	genero           	VARCHAR(1) DEFAULT 'F'   NOT NULL,
-=======
-	genero           	VARCHAR(1)   NOT NULL,
->>>>>>> origin/master
 	monedas             INTEGER UNSIGNED DEFAULT 0  NOT NULL,
 	puntos             	INTEGER UNSIGNED DEFAULT 0  NOT NULL,
 	PRIMARY KEY (nombre_usuario)
@@ -16,7 +12,7 @@
 CREATE TABLE curso (
 	id 			INT NOT NULL AUTO_INCREMENT,
 	nombre      VARCHAR(100)  NOT NULL ,
-	dificultad  VARCHAR(20)  NOT NULL,
+	dificultad  INT(1)  NOT NULL,
 	explicacion	VARCHAR(1000) NOT NULL,
 	descripcion VARCHAR(100) NOT NULL,
 	PRIMARY KEY (id)

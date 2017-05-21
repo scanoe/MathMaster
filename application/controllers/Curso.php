@@ -63,8 +63,7 @@
                 $data['title'] = 'Hola '.$this->session->userdata('username');
                 $data['nombre'] = $this->session->userdata('username');
                 $this->load->view('templates/header', $data);
-                $this->load->view('templates/nav', $data);
-                $this->load->view('lista_cursos', $data); //Se cambia luego por una vista "administrar_cursos"
+                $this->load->view('administrar_cursos', $data);
                 $this->load->view('templates/footer');
             }else{
                 $this->load->view('templates/header', $data);
@@ -97,4 +96,3 @@
 
 
     }
-?>

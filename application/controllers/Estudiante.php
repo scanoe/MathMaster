@@ -60,6 +60,7 @@ class Estudiante extends CI_Controller {
         if(empty($errores)){
             $usuario_data = array(
                 'username' => $username,
+                'tipo_usuario' => 'estudiante',
                 'progreso' => 0,
                 'pregunta' => null
             );

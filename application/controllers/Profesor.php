@@ -4,6 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profesor extends CI_Controller {
 
+    public function index(){
+        if($this->session->userdata('tipo_usuario')=='profesor'){
+            redirect('Curso/administrar_cursos');
+        }else{
+            $this->cargar_login();
+        }
+    }
+    
     public function cargar_login() {
         $data['title'] = 'MathMaster';
         $data['funcion'] = 'Profesor/iniciar_sesion';
@@ -22,9 +30,7 @@ class Profesor extends CI_Controller {
         if(empty($errores)){
             $usuario_data = array(
                 'username' => $datos_login['username'],
-                'tipo_usuario' => 'profesor',
-                'progreso' => 0,
-                'pregunta' => null
+                'tipo_usuario' => 'profesor'
             );
             $this->session->set_userdata($usuario_data);
             redirect('Curso/administrar_cursos');
