@@ -1,6 +1,6 @@
 <div class="container mt-40 relative">
     <div class="flex boton-flotante">
-        <a href="" class="btn-floating btn-large waves-effect waves-light blue relative"><img src="<?= base_url("img/ic_add_white_24px.svg") ?>"></a>       
+        <a href="<?= base_url() ?>index.php/Curso/cargar_formulario_crear_curso" class="btn-floating btn-large waves-effect waves-light blue relative"><img src="<?= base_url("img/ic_add_white_24px.svg") ?>"></a>       
     </div>
     <div class="mt-40">
         <h1 class="fs2">Cursos</h1>

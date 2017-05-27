@@ -29,6 +29,23 @@
             }
         }
 
+        public function cargar_formulario_crear_curso(){
+            if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'profesor'){
+                $data['title'] = 'Creación de un curso';
+                $data['nombre'] = $this->session->userdata('username');
+                $data['errores'] = null;
+                $data['back'] = null;
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/navProfesor', $data);
+                $this->load->view('formulario_crear_curso', $data);
+                $this->load->view('templates/footer');
+            }else{
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/error_page');
+                $this->load->view('footer');
+            }
+        }
+
         public function cargar_explicacion($curso_id){           
             if(!empty($this->session->userdata('username'))){            
                 $this->load->model('Curso_model');
@@ -89,6 +106,45 @@
             if ($result == 1) {
                 echo "<h3>ingreso correcto</h3>";
             }else{echo "<h3>ingreso incorrecto</h3>";}
+        }
+
+        public function crear(){
+            if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'profesor'){
+                $curso_data = array(
+                    'nombre' => $this->input->post('nombre'),
+                    'descripcion' => $this->input->post('descripcion'),
+                    'explicacion' => $this->input->post('explicacion'),
+                    'dificultad' => $this->input->post('dificultad')                  
+                );
+                $this->load->model('Curso_model');               
+                $curso = new Curso_model($curso_data);
+                $errores = $curso->validar();
+                if(empty($errores)){
+                    $curso->registrar();
+                    $this->administrar_cursos();
+                }else{
+                    $data['title'] = 'Creación de un curso';
+                    $data['nombre'] = $this->session->userdata('username');
+                    if(!array_key_exists('nombre', $errores))
+				        $errores["nombre"] = null;
+                    if(!array_key_exists('descripcion', $errores))
+				        $errores["descripcion"] = null;
+                    if(!array_key_exists('explicacion', $errores))
+				        $errores["explicacion"] = null;
+                    if(!array_key_exists('dificultad', $errores))
+				        $errores["dificultad"] = null;
+                    $data['errores'] = $errores;
+                    $data['back'] = $curso_data;
+                    $this->load->view('templates/header', $data);
+                    $this->load->view('templates/navProfesor', $data);
+                    $this->load->view('formulario_crear_curso', $data);
+                    $this->load->view('templates/footer');
+                }
+            }else{
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/error_page');
+                $this->load->view('footer');
+            }
         }
     }
 ?>

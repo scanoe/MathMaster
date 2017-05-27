@@ -31,6 +31,23 @@
             }
         }
 
+        public function validar(){
+            $errores = [];
+            $query = $this->db->get_where('curso', array('nombre' => $this->nombre));
+            $result = $query->result();
+            if (!empty($result))
+                $errores["nombre"] = 'Ya existe un curso con este nombre';
+            elseif ($this->nombre == null)
+                $errores["nombre"] = 'Escribe un nombre para el curso';
+            if ($this->dificultad == null)
+                $errores["dificultad"] = 'Selecciona una dificultad';
+            if ($this->explicacion == null)
+                $errores["explicacion"] = 'Escribe una explicación';
+            if ($this->descripcion == null)
+                $errores["descripcion"] = 'Escribe una pequeña descripción del contenido del curso';
+            return $errores;
+        }
+
         public function obtener_todos(){
             $query = $this->db->get('curso');
             return $query->result();
@@ -63,7 +80,19 @@
           $result = $this->db->update('curso', ['explicacion'=>$explicacion], ['id'=>$id_curso]);
 
           return $result;
+        }
 
-
+        public function registrar(){
+            $data = array(
+                'nombre' => $this->nombre,
+                'dificultad' => (int)$this->dificultad,
+                'explicacion' => $this->explicacion,
+                'descripcion' => $this->descripcion
+            );
+            if ($this->db->insert('curso', $data))
+                return TRUE;
+            else
+                return FALSE;
         }
     }
+?>

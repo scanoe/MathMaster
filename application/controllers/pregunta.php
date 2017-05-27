@@ -245,12 +245,9 @@ class pregunta extends CI_Controller {
     }
 
     public function agregar_pregunta(){ 
-
-
         $this->load->view("formulario_preguntas");
-
-
     }
+
     public function ingresar_pregunta(){
         $this->load->model("pregunta_model");
         $DATA['enunciado']=$this->input->post('enunciado');
@@ -260,34 +257,24 @@ class pregunta extends CI_Controller {
         $DATA['respuesta_incorrecta2']=$this->input->post('respuesta_incorrecta2');
         $DATA['respuesta_incorrecta3']=$this->input->post('respuesta_incorrecta3');
         $curso_id=$this->input->post('curso');
- 
-
-
     if (($DATA['respuesta_incorrecta1'] == 'NULL' and $DATA['respuesta_incorrecta2'] == 'NULL' and $DATA['respuesta_incorrecta3'] == 'NULL' ) and $DATA['tipo_de_respuesta']=='a' ) {
         $pregunta = new pregunta_model($DATA);
         $resut= $pregunta->agregar_pregunta($curso_id);
-        if ($resut==1) {echo "<h2>ingreso correcto</h2>";
-        }elseif ($resut==0) {echo "<h2>ingreso incorrecto</h2>";}
-
+        if ($resut==1) {
+            echo "<h2>ingreso correcto</h2>";
+        }elseif ($resut==0) {
+            echo "<h2>ingreso incorrecto</h2>";
+        }
     }elseif (($DATA['respuesta_incorrecta1'] != 'NULL' and $DATA['respuesta_incorrecta2'] != 'NULL' and $DATA['respuesta_incorrecta3'] != 'NULL' ) and $DATA['tipo_de_respuesta']=='c' ) {
-            $pregunta = new pregunta_model($DATA);
-            $resut= $pregunta->agregar_pregunta($curso_id);
-            if ($resut==1) {echo "<h2>ingreso correcto</h2>";
-            }elseif ($resut==0) {echo "<h2>ingreso incorrecto</h2>";}
-
-    }else{echo "error";}
-    
-    
-
-
-
-
-
+        $pregunta = new pregunta_model($DATA);
+        $resut= $pregunta->agregar_pregunta($curso_id);
+        if ($resut==1) {
+            echo "<h2>ingreso correcto</h2>";
+        }elseif ($resut==0) {
+            echo "<h2>ingreso incorrecto</h2>";
+        }
+    }else{
+        echo "error";
+        }
     }
-
-
-
-
-
-
 }
