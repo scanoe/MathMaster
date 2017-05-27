@@ -22,6 +22,15 @@ nav{
 .block{
     display: block;
 }
+.boton-flotante{
+    position: fixed;
+    left: 80%;
+    top: 90%;
+}
+.boton-flotante img{
+    top: 30%;
+    left: 30%;
+}
 .br10{
     border-radius: 10px;
 }
@@ -229,6 +238,9 @@ nav{
 }
 .p0-5p{
     padding: 0 5%;
+}
+.relative{
+    position: relative;
 }
 .submit{
     width: 50%;

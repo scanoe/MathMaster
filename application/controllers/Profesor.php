@@ -15,7 +15,7 @@ class Profesor extends CI_Controller {
     public function cargar_login() {
         $data['title'] = 'MathMaster';
         $data['funcion'] = 'Profesor/iniciar_sesion';
-
+        $data['errores'] = null;
         $this->load->view('templates/header', $data);
         $this->load->view('login', $data);
         $this->load->view('templates/footer');
@@ -35,7 +35,17 @@ class Profesor extends CI_Controller {
             $this->session->set_userdata($usuario_data);
             redirect('Curso/administrar_cursos');
         }else{
-            redirect('Profesor/cargar_login');
+            $data['errores'] = $errores;
+            $data['title'] = 'MathMaster';
+            $data['funcion'] = 'Profesor/iniciar_sesion';
+            $this->load->view('templates/header', $data);
+            $this->load->view('login', $data);
+            $this->load->view('templates/footer');
         }
+    }
+
+    public function cerrar_sesion(){
+        $this->session->sess_destroy();
+        $this->cargar_login();
     }
 }

@@ -14,6 +14,9 @@
             <div class="center-align">
                 <input class="white-text submit waves-effect waves-light" type="submit" value="Ingresar"></a>
             </div>
+            <div class="mt-20">
+                <p>¿Eres un profesor? <a href="<?= base_url() ?>index.php/Profesor/cargar_login">Ingresa acá</a></p>
+            </div>
         <?= form_close() ?>
     </div>
     <div id="landing">

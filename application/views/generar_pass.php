@@ -8,7 +8,7 @@
             <?php if(isset($pass)){ ?>
                 <h2 class="fs1-3">Su contraseña encriptada: </h2>
             <?php } ?>
-            <label class="hash fs2"><?= $pass ?></label>
+            <p class="hash fs2"><?= $pass ?></p>
         </div>
         <div class="center-align">
             <input class="white-text submit waves-effect waves-light" type="submit" value="Generar contraseña encriptada"></a>

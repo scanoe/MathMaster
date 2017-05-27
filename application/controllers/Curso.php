@@ -54,7 +54,7 @@
         }
         
         public function administrar_cursos(){
-            if(!empty($this->session->userdata('username'))){
+            if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'profesor'){
                 $this->load->model('Curso_model');
                 $this->load->model('profesor_model');
                 $curso = new Curso_model();
@@ -63,6 +63,7 @@
                 $data['title'] = 'Hola '.$this->session->userdata('username');
                 $data['nombre'] = $this->session->userdata('username');
                 $this->load->view('templates/header', $data);
+                $this->load->view('templates/navProfesor', $data);
                 $this->load->view('administrar_cursos', $data);
                 $this->load->view('templates/footer');
             }else{
@@ -78,8 +79,6 @@
             $data['explicacion']=$curso->obtener_explicacion($id_curso);
             $data['id']=$id_curso;
             $this->load->view('actualizar_explicacion',$data);
-
-
         }
         public function cambiar_explicacion(){
             $this->load->model('Curso_model');
@@ -90,9 +89,6 @@
             if ($result == 1) {
                 echo "<h3>ingreso correcto</h3>";
             }else{echo "<h3>ingreso incorrecto</h3>";}
-
-
         }
-
-
     }
+?>
