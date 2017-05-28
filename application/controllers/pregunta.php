@@ -244,37 +244,65 @@ class pregunta extends CI_Controller {
         }
     }
 
-    public function agregar_pregunta(){ 
-        $this->load->view("formulario_preguntas");
+    public function agregar_pregunta($id_curso){
+        if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'profesor'){
+            $data['id_curso'] = $id_curso;
+            $this->load->model('Curso_model');
+            $curso = new Curso_model();
+            $cursos = $curso->obtener_todos();
+            $data['title'] = 'Hola '.$this->session->userdata('username');
+            $data['nombre'] = $this->session->userdata('username');
+            $data['errores'] = null;
+            $data['tipo_de_respuesta'] = 'a';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/navProfesor', $data);
+            $this->load->view("formulario_preguntas", $data);
+            $this->load->view("templates/footer");
+        }else{
+            $data['title'] = '404: Pagina no encontrada';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/error_page');
+            $this->load->view('templates/footer');
+        }
     }
 
-    public function ingresar_pregunta(){
-        $this->load->model("pregunta_model");
-        $DATA['enunciado']=$this->input->post('enunciado');
-        $DATA['tipo_de_respuesta']=$this->input->post('tipo_de_respuesta');
-        $DATA['respuesta']=$this->input->post('respuesta');
-        $DATA['respuesta_incorrecta1']=$this->input->post('respuesta_incorrecta1');
-        $DATA['respuesta_incorrecta2']=$this->input->post('respuesta_incorrecta2');
-        $DATA['respuesta_incorrecta3']=$this->input->post('respuesta_incorrecta3');
-        $curso_id=$this->input->post('curso');
-    if (($DATA['respuesta_incorrecta1'] == 'NULL' and $DATA['respuesta_incorrecta2'] == 'NULL' and $DATA['respuesta_incorrecta3'] == 'NULL' ) and $DATA['tipo_de_respuesta']=='a' ) {
-        $pregunta = new pregunta_model($DATA);
-        $resut= $pregunta->agregar_pregunta($curso_id);
-        if ($resut==1) {
-            echo "<h2>ingreso correcto</h2>";
-        }elseif ($resut==0) {
-            echo "<h2>ingreso incorrecto</h2>";
-        }
-    }elseif (($DATA['respuesta_incorrecta1'] != 'NULL' and $DATA['respuesta_incorrecta2'] != 'NULL' and $DATA['respuesta_incorrecta3'] != 'NULL' ) and $DATA['tipo_de_respuesta']=='c' ) {
-        $pregunta = new pregunta_model($DATA);
-        $resut= $pregunta->agregar_pregunta($curso_id);
-        if ($resut==1) {
-            echo "<h2>ingreso correcto</h2>";
-        }elseif ($resut==0) {
-            echo "<h2>ingreso incorrecto</h2>";
-        }
-    }else{
-        echo "error";
+    public function ingresar_pregunta($id_curso){
+        if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'profesor'){
+            $this->load->model("pregunta_model");
+            $data['enunciado'] = $this->input->post('enunciado');
+            $data['tipo_de_respuesta'] = $this->input->post('tipo_de_respuesta');
+            $data['respuesta'] = $this->input->post('respuesta');
+            $data['respuesta_incorrecta1'] = $this->input->post('respuesta_incorrecta1');
+            $data['respuesta_incorrecta2'] = $this->input->post('respuesta_incorrecta2');
+            $data['respuesta_incorrecta3'] = $this->input->post('respuesta_incorrecta3');
+            $pregunta = new pregunta_model($data);
+            $errores = $pregunta->validar();
+            if(empty($errores)){
+                $pregunta->agregar_pregunta($id_curso);
+                $data['title'] = 'Pregunta agregada';
+                $data['nombre'] = $this->session->userdata('username');
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/navProfesor', $data);                
+                $this->load->view('pregunta_agregada');
+                $this->load->view('templates/footer', $data);    
+            }else{
+                $data['id_curso'] = $id_curso;
+                $this->load->model('Curso_model');
+                $curso = new Curso_model();
+                $cursos = $curso->obtener_todos();
+                $data['title'] = 'Hola '.$this->session->userdata('username');
+                $data['nombre'] = $this->session->userdata('username');
+                $data['errores'] = $errores;
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/navProfesor', $data);
+                $this->load->view("formulario_preguntas", $data);
+                $this->load->view("templates/footer");
+            }
+        }else{
+            $data['title'] = '404: Pagina no encontrada';
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/error_page');
+            $this->load->view('templates/footer');
         }
     }
 }

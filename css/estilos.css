@@ -161,9 +161,16 @@ textarea.materialize-textarea:focus:not([readonly]) + label{
 .mt-40{
     margin-top: 40px;
 }
+.no-shadow{
+    box-shadow: none;
+}
 .opciones-pregunta{
     display: flex;
     flex-direction: column;
+}
+.opciones-curso{
+    padding: 5px 0px;
+    margin-right: 10px;
 }
 .opcion-pregunta-wrapper{
     width: 30%;
@@ -326,5 +333,5 @@ input[type="submit"]{
     width: 90%;
 }
 .w100{
-    width: 190%;
+    width: 100%;
 }

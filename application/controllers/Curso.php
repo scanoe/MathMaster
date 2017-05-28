@@ -23,9 +23,10 @@
                 $this->load->view('lista_cursos', $data);
                 $this->load->view('templates/footer');
             }else{
+                $data['title'] = '404 Página no encontrada';
                 $this->load->view('templates/header', $data);
                 $this->load->view('templates/error_page');
-                $this->load->view('footer');
+                $this->load->view('templates/footer');
             }
         }
 
@@ -40,9 +41,10 @@
                 $this->load->view('formulario_crear_curso', $data);
                 $this->load->view('templates/footer');
             }else{
+                $data['title'] = '404 Página no encontrada';
                 $this->load->view('templates/header', $data);
                 $this->load->view('templates/error_page');
-                $this->load->view('footer');
+                $this->load->view('templates/footer');
             }
         }
 
@@ -64,29 +66,31 @@
                 $this->load->view('explicacion', $data);
                 $this->load->view('templates/footer');
             }else{
+                $data['title'] = '404 Página no encontrada';
                 $this->load->view('templates/header', $data);
                 $this->load->view('templates/error_page');
-                $this->load->view('footer');
+                $this->load->view('templates/footer');
             }
         }
         
         public function administrar_cursos(){
             if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'profesor'){
                 $this->load->model('Curso_model');
-                $this->load->model('profesor_model');
                 $curso = new Curso_model();
                 $cursos = $curso->obtener_todos();
                 $data['cursos'] = $cursos;
                 $data['title'] = 'Hola '.$this->session->userdata('username');
                 $data['nombre'] = $this->session->userdata('username');
+                $data['tipo_de_respuesta'] = 'a';
                 $this->load->view('templates/header', $data);
                 $this->load->view('templates/navProfesor', $data);
                 $this->load->view('administrar_cursos', $data);
                 $this->load->view('templates/footer');
             }else{
+                $data['title'] = '404 Página no encontrada';
                 $this->load->view('templates/header', $data);
                 $this->load->view('templates/error_page');
-                $this->load->view('footer');
+                $this->load->view('templates/footer');
             }
         }
 
@@ -141,9 +145,10 @@
                     $this->load->view('templates/footer');
                 }
             }else{
+                $data['title'] = '404 Página no encontrada';
                 $this->load->view('templates/header', $data);
                 $this->load->view('templates/error_page');
-                $this->load->view('footer');
+                $this->load->view('templates/footer');
             }
         }
     }

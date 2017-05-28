@@ -3,5 +3,6 @@
     <script src="<?= base_url('js/initMaterialize.js') ?>"></script>
     <script src="<?= base_url('js/main.js') ?>"></script>
     <script src="<?= base_url('js/botones-preguntas.js') ?>"></script>
+    <script src="<?= base_url('js/habilitarOpcionMultiple.js') ?>"></script>
 </body>
 </html>

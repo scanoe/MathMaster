@@ -4,31 +4,33 @@
     </div>
     <div class="mt-40">
         <h1 class="fs2">Cursos</h1>
-        <section class="contenedor-cursos mt-40">
+        <section class="mt-40">
             <div class="row">
                 <?php foreach($cursos as $curso): ?>
-                    <div class="col l4">
-                        <article class="card center-align margin-card p-card">
-                            <h2 class="fs1-5 mb-20"><?= $curso->nombre ?></h2>
-                            <p class="mb-20"><?= $curso->descripcion ?></p>
-                            <h5>Dificultad</h5>
-                            <div class="flex-center mt-10 mb-20">
-                                <?php for($i = 1; $i <= $curso->dificultad; $i++){ ?>
-                                    <figure class="left">
-                                        <img src="<?= base_url("img/ic_star_black_24dp_1x.png") ?>" alt="star">
-                                    </figure>
-                                <?php }
-                                    for($i = $curso->dificultad; $i < 5; $i++){ ?>
-                                        <figure class="left">
-                                            <img src="<?= base_url("img/ic_star_border_black_24dp_1x.png") ?>" alt="star">
-                                        </figure>
-                                <?php } ?>
-                                <div class="clear"></div>
+                    <div class="col s12">
+                        <article class="mt-10">
+                            <div class="row">
+                                <div class="col l12">
+                                    <div>
+                                        <h2 class="fs1-5 mb-20"><?= $curso->nombre ?></h2>
+                                        <p class="mb-20"><?= $curso->descripcion ?></p>                            
+                                    </div>
+                                </div>
+                                <div class="col l9">
+                                    <div>
+                                        <ul class="flex">
+                                            <a class="white-text waves-effect waves-light blue w100 opciones-curso" href="<?= base_url() ?>index.php/pregunta/agregar_pregunta/<?= $curso->id ?>"><li class="center-align">Agregar Pregunta</li></a>
+                                            <a class="white-text waves-effect waves-light blue w100 opciones-curso" href=""><li class="center-align">Agregar insignia</li></a>
+                                            <a class="white-text waves-effect waves-light blue w100 opciones-curso" href=""><li class="center-align">Crear explicación</li></a>                                            
+                                            <a class="white-text waves-effect waves-light blue w100 opciones-curso" href=""><li class="center-align">Actualizar explicación</li></a>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                            <a href="<?= base_url() ?>index.php/Curso/actualizar_explicacion/<?= $curso->id ?>" class="white-text submit waves-effect waves-light boton-realizar">Actualizar explicación</a>
+                            <div class="divider"></div>
                         </article>
                     </div>
-                <?php endforeach ?>
+                <?php endforeach; ?>
             </div>
         </section>
     </div>

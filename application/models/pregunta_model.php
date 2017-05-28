@@ -44,6 +44,18 @@
 			}
 		}
 
+		public function validar(){
+			$errores = [];
+			if($this->enunciado == null)
+				$errores["enunciado"] = "Ingresa un enunciado para la pregunta";
+			if($this->respuesta == null)
+				$errores["respuesta"] = "Ingresa una respuesta para la pregunta";
+			if($this->tipo_de_respuesta != 'a')
+				if($this->respuesta_incorrecta1 == null || $this->respuesta_incorrecta2 == null || $this->respuesta_incorrecta2 )
+					$errores["respuesta_incorrecta"] = "Debes ingresar tres respuestas incorrectas como comodines";
+			return $errores;		
+		}
+
 		public function obtener_pregunta_aleatoria($curso){
 			$this->db->select('*');
 			$this->db->from('pregunta');
@@ -52,7 +64,6 @@
 			$this->db->limit(1);
 			$query = $this->db->get();
 			return $query->result()[0];
-
 		}
 		
 		public function obtener_pregunta_por_id($id){
@@ -64,7 +75,7 @@
 		}
 
 		public function agregar_pregunta($curso_id){
-					$data = [
+			$data = [
 				'enunciado' => $this->enunciado,
 				'tipo_de_respuesta' => $this->tipo_de_respuesta,
 				'respuesta' => $this->respuesta,
@@ -72,13 +83,8 @@
 				'respuesta_incorrecta2' => $this->respuesta_incorrecta2,
 				'respuesta_incorrecta3' => $this->respuesta_incorrecta3,
 				'curso'=> $curso_id
-
-
 			];
-
 			return $this->db->insert('pregunta', $data);
-
-
 		}
 	}
 ?>
