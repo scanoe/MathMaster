@@ -281,9 +281,10 @@ class pregunta extends CI_Controller {
                 $pregunta->agregar_pregunta($id_curso);
                 $data['title'] = 'Pregunta agregada';
                 $data['nombre'] = $this->session->userdata('username');
+                $data['mensaje'] = 'Pregunta agregada correctamente';
                 $this->load->view('templates/header', $data);
                 $this->load->view('templates/navProfesor', $data);                
-                $this->load->view('pregunta_agregada');
+                $this->load->view('pregunta_agregada', $data);
                 $this->load->view('templates/footer', $data);    
             }else{
                 $data['id_curso'] = $id_curso;

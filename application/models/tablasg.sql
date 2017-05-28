@@ -13,7 +13,7 @@ CREATE TABLE curso (
 	id 			INT NOT NULL AUTO_INCREMENT,
 	nombre      VARCHAR(100)  NOT NULL ,
 	dificultad  INT(1)  NOT NULL,
-	explicacion	VARCHAR(1000) NOT NULL,
+	explicacion	LONGTEXT NOT NULL,
 	descripcion VARCHAR(100) NOT NULL,
 	PRIMARY KEY (id)
 ) ENGINE = InnoDB;

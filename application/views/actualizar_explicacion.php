@@ -1,35 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>parcial1</title>
-</head>
-<body>
-<div id="container">
-	<header id="header">
-		<h1 Style="font-family: Arial">actualizar explicacion</h1>
+<div class="container mt-40">
+	<header>
+		<h1 class="fs2">Actualizar explicacion</h1>
 	</header>
-	<dic id="body">
-
-
-
-<?= form_open('curso/cambiar_explicacion'); ?>
-<div>
-	<?= form_label("explicacion","explicacion"); ?>
-	<?= form_input('explicacion',$explicacion,['id'=> 'explicacion']); ?>
-</div>
-<div>
-	<?= form_hidden('id', $id);?>
-</div>
-
-<?= form_submit('','Actualizar');?>
-<?= form_close(); ?>
-
-
+	<div>
+		<?= form_open('curso/cambiar_explicacion'); ?>
+			<div class="input-field mt-20">
+				<textarea id="explicacion" name="explicacion" class="materialize-textarea"><?= $explicacion ?></textarea>
+            	<label for="explicacion">Explicación</label>				
+			</div>
+			<p class="error"><?= $error ?></p>
+			<div>
+				<?= form_hidden('id', $id);?>
+			</div>
+			<div class="center-align">
+				<?= form_submit('', 'Actualizar explicacion', ['class' => 'white-text submit waves-effect waves-light']);?>
+			</div>
+		<?= form_close(); ?>		
 	</div>
-	<footer id ="footer">
-		<p>Developed by: MathMaster Developing Team</p>
-	</footer>
 </div>
-</body>
-</html>

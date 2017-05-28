@@ -76,9 +76,9 @@
             $query = $this->db->get();
             return $query->result()[0];
         }
-        public function cambiar_explicacion($id_curso,$explicacion){
-          $result = $this->db->update('curso', ['explicacion'=>$explicacion], ['id'=>$id_curso]);
-
+        
+        public function cambiar_explicacion($id_curso){
+          $result = $this->db->update('curso', ['explicacion' => $this->explicacion], ['id' => $id_curso]);
           return $result;
         }
 

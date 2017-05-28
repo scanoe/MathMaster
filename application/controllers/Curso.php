@@ -94,22 +94,64 @@
             }
         }
 
-        public function actualizar_explicacion($id_curso=1){// el igual 1 se debe quitar para que reciba otro id_curso
-            $this->load->model('Curso_model');
-            $curso=new Curso_model();
-            $data['explicacion']=$curso->obtener_explicacion($id_curso);
-            $data['id']=$id_curso;
-            $this->load->view('actualizar_explicacion',$data);
+        public function actualizar_explicacion($id_curso){
+            if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'profesor'){
+                $this->load->model('Curso_model');
+                $curso = new Curso_model();
+                $data['explicacion'] = $curso->obtener_explicacion($id_curso);
+                $data['id'] = $id_curso;
+                $data['title'] = 'Actualizar Explicación';
+                $data['nombre'] = $this->session->userdata('username');
+                $data['error'] = null;
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/navProfesor', $data);
+                $this->load->view('actualizar_explicacion', $data);
+                $this->load->view('templates/footer');
+            }else{
+                $data['title'] = '404 Página no encontrada';
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/error_page');
+                $this->load->view('templates/footer');
+            }
         }
+
         public function cambiar_explicacion(){
-            $this->load->model('Curso_model');
-            $id_curso=$this->input->post('id');
-            $explicacion=$this->input->post('explicacion');
-            $curso=new Curso_model();
-            $result=$curso->cambiar_explicacion($id_curso,$explicacion);
-            if ($result == 1) {
-                echo "<h3>ingreso correcto</h3>";
-            }else{echo "<h3>ingreso incorrecto</h3>";}
+            if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'profesor'){
+                $data = array('id' => $this->input->post('id'), 'explicacion' => $this->input->post('explicacion'));
+                $this->load->model('Curso_model');
+                if(!empty($data['explicacion'])){
+                    $curso = new Curso_model($data);
+                    $result = $curso->cambiar_explicacion($data['id'], $data['explicacion']);
+                    if ($result == 1) {
+                        $data['title'] = 'Explicación actualizada';
+                        $data['nombre'] = $this->session->userdata('username');
+                        $data['mensaje'] = 'La explicación se editó correctamente';
+                        $this->load->view('templates/header', $data);
+                        $this->load->view('templates/navProfesor', $data);                
+                        $this->load->view('pregunta_agregada', $data);
+                        $this->load->view('templates/footer', $data);   
+                    }else{
+                        echo "<h3>ingreso incorrecto</h3>";
+                    }
+                }else{
+                    $this->load->model('Curso_model');
+                    $curso = new Curso_model();
+                    $data['explicacion'] = $curso->obtener_explicacion($data['id']);
+                    $data['id'] = $data['id'];
+                    $data['title'] = 'Actualizar Explicación';
+                    $data['nombre'] = $this->session->userdata('username');
+                    $data['error'] = 'No puedes dejar la explicación vacía';
+                    $this->load->view('templates/header', $data);
+                    $this->load->view('templates/navProfesor', $data);
+                    $this->load->view('actualizar_explicacion', $data);
+                    $this->load->view('templates/footer');
+                }            
+            }else{
+                $data['title'] = '404 Página no encontrada';
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/error_page');
+                $this->load->view('templates/footer');
+            }
         }
 
         public function crear(){
