@@ -8,7 +8,7 @@
         }
 
         public function cargar_lista_cursos(){
-            if(!empty($this->session->userdata('username'))){
+            if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'estudiante'){
                 $this->load->model('Curso_model');
                 $this->load->model('Estudiante_model');
                 $curso = new Curso_model();
@@ -49,7 +49,7 @@
         }
 
         public function cargar_explicacion($curso_id){           
-            if(!empty($this->session->userdata('username'))){            
+            if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'estudiante'){          
                 $this->load->model('Curso_model');
                 $this->load->model('Estudiante_model');
                 $curso = new Curso_model();

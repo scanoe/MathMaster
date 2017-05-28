@@ -77,7 +77,7 @@ class Estudiante extends CI_Controller {
     }
 
     public function cargar_tabla_de_puntuaciones(){
-        if(!empty($this->session->userdata('username'))){
+        if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'estudiante'){
             $this->load->model("Estudiante_model");
             $estudiante = new Estudiante_model(array('username'=>$this->session->userdata('username')));
             $data['title'] = 'Tabla de puntuaciones';
@@ -116,7 +116,7 @@ class Estudiante extends CI_Controller {
     }
 
     public function cargar_vista_editar_perfil(){
-        if(!empty($this->session->userdata('username'))){
+        if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'estudiante'){
             $this->load->model("Estudiante_model");
             $estudiante = new Estudiante_model(array('username'=>$this->session->userdata('username')));
             $data['errores'] = [];
@@ -139,7 +139,7 @@ class Estudiante extends CI_Controller {
     }
 
     public function editar_perfil(){
-        if(!empty($this->session->userdata('username'))){
+        if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'estudiante'){
             $nombre = $this->input->post("nombre");
             $this->load->model("Estudiante_model");
             $estudiante = new Estudiante_model(array('username'=>$this->session->userdata('username')));

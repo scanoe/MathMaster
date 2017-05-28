@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class pregunta extends CI_Controller {
 
     public function iniciar_test($curso_id){
-        if(!empty($this->session->userdata('username'))){
+        if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'estudiante'){
             $this->load->model("pregunta_model");
             $this->load->model("Estudiante_model");
             $this->load->model("Curso_model");
@@ -40,7 +40,7 @@ class pregunta extends CI_Controller {
     }
 
     public function responder_pregunta(){
-        if(!empty($this->session->userdata('username'))){
+        if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'estudiante'){
             $this->load->model("pregunta_model");
             $this->load->model("Estudiante_model");
             $this->load->model("Curso_model");
@@ -129,7 +129,7 @@ class pregunta extends CI_Controller {
     }
 
     public function cambiar_pregunta(){
-        if(!empty($this->session->userdata('username'))){
+        if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'estudiante'){
             $this->load->model("pregunta_model");
             $this->load->model("Estudiante_model"); 
             $estudiante = new Estudiante_model(array('username'=>$this->session->userdata('username')));
@@ -189,7 +189,7 @@ class pregunta extends CI_Controller {
 	}
 
     public function ver_respuesta(){
-        if(!empty($this->session->userdata('username'))){
+        if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'estudiante'){
             $this->load->model("pregunta_model");
             $this->load->model("Estudiante_model");
             $this->load->model("Curso_model");
