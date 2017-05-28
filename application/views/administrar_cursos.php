@@ -12,7 +12,7 @@
                             <div class="row">
                                 <div class="col l12">
                                     <div>
-                                        <h2 class="fs1-5 mb-20"><?= $curso->nombre ?></h2>
+                                        <h2 class="fs1-5"><?= $curso->nombre ?></h2> 
                                         <p class="mb-20"><?= $curso->descripcion ?></p>                            
                                     </div>
                                 </div>

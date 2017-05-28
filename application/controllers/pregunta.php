@@ -10,7 +10,7 @@ class pregunta extends CI_Controller {
             $this->load->model("Curso_model");
             $curso = new Curso_model();
             $estudiante = new Estudiante_model(array('username'=>$this->session->userdata('username')));
-            $nombre_curso = $curso->obtener_nombre_curso($curso_id)->nombre;
+            $nombre_curso = $curso->obtener_nombre($curso_id);
             $data["nombre"] = $this->session->userdata('username');  
             $data['monedas'] = $estudiante->__get("monedas");
             $data["pregunta"]= $this->pregunta_model->obtener_pregunta_aleatoria($curso_id);
@@ -22,6 +22,7 @@ class pregunta extends CI_Controller {
             $usuario_data = array(
                 'username' => $this->session->userdata('username'),
                 'progreso' => 0,
+                'tipo_usuario' => 'estudiante',
                 'pregunta' => $data["pregunta"]
             );
             $this->session->set_userdata($usuario_data);
@@ -67,6 +68,7 @@ class pregunta extends CI_Controller {
                     $usuario_data = array(
                         'username' => $this->session->userdata('username'),
                         'progreso' => $contador,
+                        'tipo_usuario' => 'estudiante',
                         'pregunta' => $data["pregunta"]
                     );
                     $this->session->set_userdata($usuario_data);
@@ -92,6 +94,7 @@ class pregunta extends CI_Controller {
                     $usuario_data = array(
                         'username' => $this->session->userdata('username'),
                         'progreso' => 11,
+                        'tipo_usuario' => 'estudiante',
                         'pregunta' => $this->session->userdata('pregunta')
                     );
                     $puntos = $estudiante->__get("puntos") + 10;
@@ -146,6 +149,7 @@ class pregunta extends CI_Controller {
                 $usuario_data = array(
                     'username' => $this->session->userdata('username'),
                     'progreso' => $this->session->userdata('progreso'),
+                    'tipo_usuario' => 'estudiante',
                     'pregunta' => $data["pregunta"]
                 );
                 $this->session->set_userdata($usuario_data);

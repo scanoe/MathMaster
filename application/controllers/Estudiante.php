@@ -26,6 +26,7 @@ class Estudiante extends CI_Controller {
                 $usuario_data = array(
                     'username' => $username,
                     'progreso' => $contador,
+                    'tipo_usuario' => 'estudiante',
                     'pregunta' => NULL
                 );
                 $this->session->set_userdata($usuario_data);

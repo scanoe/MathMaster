@@ -12,7 +12,7 @@
                 $this->load->model('Curso_model');
                 $this->load->model('Estudiante_model');
                 $curso = new Curso_model();
-                $cursos = $curso->obtener_todos();
+                $cursos = $curso->obtener_cursos_con_reguntas();
                 $data['cursos'] = $cursos;
                 $data['title'] = 'Hola '.$this->session->userdata('username');
                 $estudiante = new Estudiante_model(array('username'=>$this->session->userdata('username')));       
@@ -76,6 +76,7 @@
         public function administrar_cursos(){
             if(!empty($this->session->userdata('username')) && $this->session->userdata('tipo_usuario') == 'profesor'){
                 $this->load->model('Curso_model');
+                $this->load->model('pregunta_model');
                 $curso = new Curso_model();
                 $cursos = $curso->obtener_todos();
                 $data['cursos'] = $cursos;
