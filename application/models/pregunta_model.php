@@ -51,7 +51,7 @@
 			if($this->respuesta == null)
 				$errores["respuesta"] = "Ingresa una respuesta para la pregunta";
 			if($this->tipo_de_respuesta != 'a')
-				if($this->respuesta_incorrecta1 == null || $this->respuesta_incorrecta2 == null || $this->respuesta_incorrecta2 )
+				if($this->respuesta_incorrecta1 == null || $this->respuesta_incorrecta2 == null || $this->respuesta_incorrecta3 == null )
 					$errores["respuesta_incorrecta"] = "Debes ingresar tres respuestas incorrectas como comodines";
 			return $errores;		
 		}
