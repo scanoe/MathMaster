@@ -22,8 +22,8 @@
 				<?= form_label('Escriba la respuesta correcta','respuesta');?>
 				<?=form_input('respuesta',isset($enunciado) ? $respuesta : "",['id'=> 'respuesta']); ?>
 			</div>
+			<label class="error"><?= isset($errores['respuesta']) ? $errores['respuesta'] : '' ?></label>
 			<div id="contenedorPreguntasIncorrectas" class=<?= $tipo_de_respuesta == 'a' ? "hidden" : ""?>>
-				<label class="error"><?= isset($errores['respuesta']) ? $errores['respuesta'] : '' ?></label>
 				<p class="mt-20" id="parrafo-explicativo">Ahora escriba tres respuestas incorrectas</p>
 				<div class = "input-field">
 					<?= form_label('Respuesta incorrecta 1','respuesta incorrecta1', ['id'=>"lri1"]);?>

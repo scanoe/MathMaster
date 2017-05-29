@@ -37,7 +37,7 @@
                     $data['mensaje'] = 'La insignia se agregó correctamente';
                     $this->load->view('templates/header', $data);
                     $this->load->view('templates/navProfesor', $data);                
-                    $this->load->view('pregunta_agregada', $data);
+                    $this->load->view('insignia_agregada', $data);
                     $this->load->view('templates/footer', $data);   
                 }else{
                     $data['title'] = 'Agregar insignia';

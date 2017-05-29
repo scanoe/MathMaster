@@ -122,14 +122,14 @@
                 $this->load->model('Curso_model');
                 if(!empty($data['explicacion'])){
                     $curso = new Curso_model($data);
-                    $result = $curso->cambiar_explicacion($data['id'], $data['explicacion']);
+                    $result = $curso->cambiar_explicacion($data['id']);
                     if ($result == 1) {
                         $data['title'] = 'Explicación actualizada';
                         $data['nombre'] = $this->session->userdata('username');
                         $data['mensaje'] = 'La explicación se editó correctamente';
                         $this->load->view('templates/header', $data);
                         $this->load->view('templates/navProfesor', $data);                
-                        $this->load->view('pregunta_agregada', $data);
+                        $this->load->view('explicacion_actualizada', $data);
                         $this->load->view('templates/footer', $data);   
                     }else{
                         echo "<h3>ingreso incorrecto</h3>";

@@ -13,7 +13,7 @@
 				<?= form_hidden('id', $id);?>
 			</div>
 			<div class="center-align">
-				<?= form_submit('', 'Actualizar explicacion', ['class' => 'white-text submit waves-effect waves-light']);?>
+				<?= form_submit('', 'Actualizar explicación', ['class' => 'white-text submit waves-effect waves-light']);?>
 			</div>
 		<?= form_close(); ?>		
 	</div>

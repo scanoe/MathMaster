@@ -29,7 +29,7 @@
         </div>
         <label class="error"><?= isset($errores['imagen']) ? $errores['imagen'] : "" ?></label>
         <div class="center-align pt-24">
-            <input class="white-text submit waves-effect waves-light" type="submit" value="Agregar insignia"></a>
+            <input class="white-text submit waves-effect waves-light" type="submit" value="Agregar insignia al curso"></a>
         </div>
     <?= form_close() ?>
 </div>

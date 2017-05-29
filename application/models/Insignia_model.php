@@ -59,7 +59,12 @@
 
         public function obtener_insignia_por_curso($id_curso){
             $query = $this->db->get_where('insignia', array('curso'=>$id_curso));
-            return new Insignia_model($query->result()[0]);
+            $results = $query->result();
+            $insignias = [];
+            foreach($results as $key => $result):
+                $insignias[$key] = new Insignia_model($result);
+            endforeach;
+            return $insignias;
         }
 
         public function existe_insignia_por_estudiante($username){

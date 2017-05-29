@@ -81,13 +81,14 @@ class pregunta extends CI_Controller {
                     }
                 }elseif($contador == 10){
                     $this->load->model("Insignia_model");
-                    $insignia = $this->Insignia_model->obtener_insignia_por_curso($id_curso);
-                    if($estudiante->agregar_insignia($insignia)){
-                        $data['insignia'] = $insignia;
-                    }else{
-                        $data['insignia'] = null;
-                    }
-                    $data['title'] = 'Curso aprobado';               
+                    $insignias = $this->Insignia_model->obtener_insignia_por_curso($id_curso);
+                    $temp = [];
+                    foreach($insignias as $key => $insignia):
+                        if($estudiante->agregar_insignia($insignia))
+                            $temp[$key] = $insignia;
+                    endforeach;                  
+                    $data['title'] = 'Curso aprobado';  
+                    $data['insignias'] = $temp;
                     $this->load->view('templates/header', $data);
                     $this->load->view("templates/nav",$data);
                     $this->load->view('curso_aprobado', $data);
