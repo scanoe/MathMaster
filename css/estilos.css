@@ -161,6 +161,9 @@ textarea.materialize-textarea:focus:not([readonly]) + label{
 .mt-40{
     margin-top: 40px;
 }
+.no-block{
+    display:inherit;
+}
 .no-shadow{
     box-shadow: none;
 }
@@ -273,6 +276,9 @@ textarea.materialize-textarea:focus:not([readonly]) + label{
     top: 57px;
     position: absolute;
     z-index: 100;
+}
+.tarjeta-cursos-perfil{
+    min-height: 102px;
 }
 .title{
     display: flex;

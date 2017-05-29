@@ -20,7 +20,7 @@
                                     <div>
                                         <ul class="flex">
                                             <a class="white-text waves-effect waves-light blue w100 opciones-curso" href="<?= base_url() ?>index.php/pregunta/agregar_pregunta/<?= $curso->id ?>"><li class="center-align">Agregar Pregunta</li></a>
-                                            <a class="white-text waves-effect waves-light blue w100 opciones-curso" href=""><li class="center-align">Agregar insignia</li></a>                                           
+                                            <a class="white-text waves-effect waves-light blue w100 opciones-curso" href="<?= base_url() ?>index.php/Insignia/cargar_formulario_insignia/<?= $curso->id ?>"><li class="center-align">Agregar insignia</li></a>                                           
                                             <a class="white-text waves-effect waves-light blue w100 opciones-curso" href="<?= base_url() ?>index.php/Curso/actualizar_explicacion/<?= $curso->id ?>"><li class="center-align">Actualizar explicación</li></a>
                                         </ul>
                                     </div>

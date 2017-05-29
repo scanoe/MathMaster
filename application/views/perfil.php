@@ -16,7 +16,7 @@
                     <div class="row">
                         <?php foreach($cursos_aprobados as $curso_aprobado): ?>
                             <div class="col l4">
-                                <article class="card p-card center-align ">
+                                <article class="card p-card center-align tarjeta-cursos-perfil">
                                     <h4 class="fs1-3"><?= $curso_aprobado->nombre ?></h4>
                                     <p class="mt-10"><?= $curso_aprobado->descripcion ?></p>
                                 </article>

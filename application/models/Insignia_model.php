@@ -28,6 +28,30 @@
             }
         }
 
+        public function validar(){
+            $errores = [];
+            if($this->nombre == null)
+                $errores['nombre'] = "Ingresa un nombre para la insignia";
+            if($this->imagen == null)
+                $errores['imagen'] = "Selecciona una imagen para la insignia";
+            if($this->descripcion == null)
+                $errores['descripcion'] = "Escribe una corta descripción de por qué se otorga esta insignia";
+            return $errores;
+        }
+
+        public function agregar($id_curso){
+            $data = array(
+                'nombre' => $this->nombre,
+                'descripcion' => $this->descripcion,
+                'imagen' => $this->imagen,
+                'curso' => (int)$id_curso
+            );
+            if ($this->db->insert('insignia', $data))
+                return TRUE;
+            else
+                return FALSE;
+        }
+
         public function obtener_id(){
             $query = $this->db->get_where('insignia', array('nombre'=>$this->nombre));
             return $query->result()[0]->id;

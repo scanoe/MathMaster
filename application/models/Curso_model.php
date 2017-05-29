@@ -54,7 +54,7 @@
         }
 
         public function obtener_cursos_con_reguntas(){
-            $sql = "SELECT * FROM (SELECT curso, COUNT(*) a FROM `pregunta` GROUP BY `curso`) as b JOIN curso ON b.curso = curso.id WHERE b.a > 10";
+            $sql = "SELECT * FROM (SELECT curso, COUNT(*) a FROM `pregunta` GROUP BY `curso`) as b JOIN curso ON b.curso = curso.id WHERE b.a >= 10";
             $query = $this->db->query($sql);
             return $query->result();
         }
