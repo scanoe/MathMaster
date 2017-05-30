@@ -6,12 +6,12 @@
     <?= form_open('Insignia/insertar/'.$id) ?>
         <div class="input-field">
             <label for="nombre">Nombre de la insignia</label>
-            <input type="text" id="nombre" name="nombre" value = "<?= $back['nombre'] ?>">
+            <input type="text" id="nombre" name="nombre" value = "<?= $back['nombre'] ?>" data-length="100">
         </div>
         <label class="error"><?= isset($errores['nombre']) ? $errores['nombre'] : "" ?></label>
         <div class="input-field">
             <label for="descripcion">Descripción de la insignia</label>
-            <input type="text" id="descripcion" name="descripcion" value = "<?= $back['descripcion'] ?>">
+            <input type="text" id="descripcion" name="descripcion" value = "<?= $back['descripcion'] ?>" data-length="1000">
         </div>
         <label class="error"><?= isset($errores['descripcion']) ? $errores['descripcion'] : "" ?></label>
         <p class="pr-32 grey-text">Escoge una imagen</p>

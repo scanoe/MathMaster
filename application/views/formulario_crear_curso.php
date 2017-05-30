@@ -3,12 +3,12 @@
     <?= form_open('Curso/crear') ?>
         <div class="input-field">
             <label for="nombre">Nombre del curso</label>
-            <input type="text" id="nombre" name="nombre" value="<?= $back['nombre'] ?>">
+            <input type="text" id="nombre" name="nombre" value="<?= $back['nombre'] ?>" data-length="50">
         </div>
         <label class="error"><?= $errores['nombre'] ?></label>
         <div class="input-field">
             <label for="descripcion">Descripción</label>
-            <input type="text" id="descripcion" name="descripcion" value="<?= $back['descripcion'] ?>">
+            <input type="text" id="descripcion" name="descripcion" value="<?= $back['descripcion'] ?>" data-length="100">
         </div>
         <label class="error"><?= $errores['descripcion'] ?></label>
         <div class="input-field">
