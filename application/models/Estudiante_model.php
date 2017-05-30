@@ -93,7 +93,7 @@
                 'nombre_usuario' => $this->username,
                 'nombre' => $this->nombres,
                 'contraseña' => $this->PasswordHash->HashPassword($this->pass),
-                'fecha_nacimiento' => $this->fecha_nacimiento,
+                'fecha_nacimiento' => date('Y-m-d',strtotime($this->fecha_nacimiento)),
                 'genero' => $this->sexo,
                 'monedas' => 0,
                 'puntos' => 0
