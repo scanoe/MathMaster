@@ -17,19 +17,19 @@
 					shuffle($respuesta);
 				?>
 				<p>
-					<input name="grupo-preguntas" type="radio" id="pregunta1" value=<?= $respuesta[0] ?>>
+					<input name="grupo-preguntas" type="radio" id="pregunta1" value="<?= $respuesta[0] ?>">
 					<label for="pregunta1"><?= $respuesta[0] ?></label>
 				</p>
 				<p>
-					<input name="grupo-preguntas" type="radio" id="pregunta2" value=<?= $respuesta[1] ?>>
+					<input name="grupo-preguntas" type="radio" id="pregunta2" value="<?= $respuesta[1] ?>">
 					<label for="pregunta2"><?= $respuesta[1] ?></label>
 				</p>
 				<p>
-					<input name="grupo-preguntas" type="radio" id="pregunta3" value=<?= $respuesta[2] ?>>
+					<input name="grupo-preguntas" type="radio" id="pregunta3" value="<?= $respuesta[2] ?>">
 					<label for="pregunta3"><?= $respuesta[2] ?></label>
 				</p>
 				<p>
-					<input name="grupo-preguntas" type="radio" id="pregunta4" value=<?= $respuesta[3] ?>>
+					<input name="grupo-preguntas" type="radio" id="pregunta4" value="<?= $respuesta[3] ?>">
 					<label for="pregunta4"><?= $respuesta[3] ?></label>
 				</p>
 				<div class="center-align">
